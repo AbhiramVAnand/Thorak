@@ -22,9 +22,9 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
     * TODO: Create Home fragment - Done
     * TODO: Make the view transparent - Done
     * TODO: Create Clock - Done
-    * TODO: Long press
-    * TODO: Right and Left swipe functions
-    * TODO: Up and Down swipe functions
+    * TODO: Long press - Done
+    * TODO: Right and Left swipe functions - Done
+    * TODO: Up and Down swipe functions - Done
     */
 
     private lateinit var mgesturedetector : GestureDetector
