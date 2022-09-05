@@ -1,21 +1,15 @@
 package com.abhiram.thorak.fragments
 
-import android.content.Intent
+
 import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
 import android.view.*
 import android.widget.TextClock
-import android.widget.TextView
-import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.R
 import java.lang.Math.abs
-import java.lang.reflect.Type
-import kotlin.concurrent.fixedRateTimer
 
 class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestureListener{
     /*
@@ -28,7 +22,6 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
     */
 
     private lateinit var mgesturedetector : GestureDetector
-
     private lateinit var fragmentTransaction : FragmentTransaction
 
     override fun onCreateView(
@@ -50,6 +43,7 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         date.setTypeface(font)
         return inflate
     }
+
 
     override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
         mgesturedetector.onTouchEvent(p1)

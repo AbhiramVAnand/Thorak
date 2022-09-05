@@ -5,7 +5,9 @@
       <map>
         <entry key="app/src/main/res/font/noto_sans.xml" value="0.24307692307692308" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/cardview.xml" value="1.0" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/fragment_app_info.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/fragment_tray.xml" value="0.21666666666666667" />

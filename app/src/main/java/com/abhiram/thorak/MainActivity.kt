@@ -1,6 +1,7 @@
 
 package com.abhiram.thorak
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
@@ -14,4 +15,5 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         supportFragmentManager.beginTransaction().replace(R.id.frag_view,HomeFragment()).commit()
     }
+
 }
