@@ -35,14 +35,14 @@ class CustomAdapter(private val mList: List<ItemsViewModel>, val pm : PackageMan
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val ItemsViewModel = mList[position]
-
         holder.imageView.setImageDrawable(ItemsViewModel.icon)
         holder.textView.text = ItemsViewModel.appName
-        val launchIntent : Intent = pm.getLaunchIntentForPackage(ItemsViewModel.pkg)!!
         holder.imageView.setOnClickListener {
+            val launchIntent : Intent = pm.getLaunchIntentForPackage(ItemsViewModel.pkg)!!
             context.startActivity(launchIntent)
         }
         holder.textView.setOnClickListener {
+            val launchIntent : Intent = pm.getLaunchIntentForPackage(ItemsViewModel.pkg)!!
             context.startActivity(launchIntent)
         }
 

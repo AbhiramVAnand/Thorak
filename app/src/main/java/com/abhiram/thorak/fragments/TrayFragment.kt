@@ -36,7 +36,8 @@ class TrayFragment : Fragment() {
         app!!.sortBy { it.appName }
         if (app != null) {
             for(i in app){
-                Log.e("App Name","${i.appName}")
+                Log.e("App Name","${i.appName}\n")
+                Log.e("App Icon","${i.icon}\n")
             }
         }
         Log.e("Size","${app.size}")
