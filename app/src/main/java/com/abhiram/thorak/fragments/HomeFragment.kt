@@ -1,6 +1,7 @@
 package com.abhiram.thorak.fragments
 
 
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
@@ -82,6 +83,7 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
                     if(xdiff>0){
 //                       Left To Right
                         fragmentTransaction.replace(R.id.frag_view,FavouritesFragment()).addToBackStack("path").commit()
+//                        fragmentTransaction.replace(R.id.frag_view,EditfavFragment()).addToBackStack("path").commit()
                     }else{
 //                       Right to left
                         fragmentTransaction.replace(R.id.frag_view,TrayFragment()).addToBackStack("path").commit()
@@ -92,10 +94,12 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
                 if (abs(ydiff) > swipeThreshold && abs(p3) > swipeVelocityThreshold){
                     if(ydiff>0){
 //                        Up to down
-                        fragmentTransaction.replace(R.id.frag_view,AboutFragment()).addToBackStack("path").commit()
+//                        val intent : Intent = Intent(android.provider.Settings.ACTION_QUICK_ACCESS_WALLET_SETTINGS)
+//                        requireContext().startActivity(intent)
+//                        fragmentTransaction.replace(R.id.frag_view,AboutFragment()).addToBackStack("path").commit()
                     }else{
 //                        Down to Up
-                        fragmentTransaction.replace(R.id.frag_view,AboutFragment()).addToBackStack("path").commit()
+                        fragmentTransaction.replace(R.id.frag_view,SearchFragment()).addToBackStack("path").commit()
                     }
                 }
             }

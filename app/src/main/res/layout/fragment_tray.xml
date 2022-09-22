@@ -1,4 +1,4 @@
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,11 +7,6 @@
     android:background="@color/darkDim"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -21,8 +16,8 @@
             android:textFontWeight="500"
             android:textSize="32sp"
             android:textColor="@color/white"
-            android:layout_marginLeft="10sp"
-            android:layout_marginTop="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.045"
@@ -34,7 +29,8 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="15sp"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +39,4 @@
             app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:itemCount="5"
             tools:listitem="@layout/cardview" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</ScrollView>
+</LinearLayout>

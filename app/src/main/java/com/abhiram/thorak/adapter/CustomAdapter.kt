@@ -18,9 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abhiram.thorak.R
 import com.abhiram.thorak.fragments.AppInfoFragment
 
-
-
-class CustomAdapter(private val mList: List<ItemsViewModel>, val pm : PackageManager, val context : Context) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<AppListView>, val pm : PackageManager, val context : Context) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +33,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>, val pm : PackageMan
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val ItemsViewModel = mList[position]
-        holder.imageView.setImageDrawable(ItemsViewModel.icon)
+        holder.imageView.setImageDrawable(pm.getApplicationIcon(ItemsViewModel.pkg))
         holder.textView.text = ItemsViewModel.appName
         holder.imageView.setOnClickListener {
             val launchIntent : Intent = pm.getLaunchIntentForPackage(ItemsViewModel.pkg)!!

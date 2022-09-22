@@ -3,14 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/background_bg.xml" value="0.1035" />
+        <entry key="app/src/main/res/drawable/buttonbg.xml" value="0.1395" />
         <entry key="app/src/main/res/font/noto_sans.xml" value="0.24307692307692308" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21666666666666667" />
-        <entry key="app/src/main/res/layout/cardview.xml" value="1.0" />
+        <entry key="app/src/main/res/layout/bgbutton.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/cardview.xml" value="0.31047265987025024" />
+        <entry key="app/src/main/res/layout/favcard.xml" value="1.0" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/fragment_add_fav.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/fragment_app_info.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/fragment_edit_fav.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/fragment_editfav.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/fragment_finish_startup.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/fragment_start_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_tray.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/layout/testcard.xml" value="0.42777777777777776" />
       </map>
     </option>
   </component>
