@@ -52,7 +52,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/buttonbg"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
         android:paddingLeft="30sp"

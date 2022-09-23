@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         supportActionBar?.hide()
         if (isFirstRun()){
+            window.navigationBarColor = resources.getColor(R.color.darkBl)
+            window.statusBarColor = resources.getColor(R.color.darkBl)
             supportFragmentManager.beginTransaction().replace(R.id.frag_view, StartUpFragment()).commit()
         }else{
             supportFragmentManager.beginTransaction().replace(R.id.frag_view,HomeFragment()).commit()

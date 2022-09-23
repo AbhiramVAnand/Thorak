@@ -31,14 +31,18 @@
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/check"
-        android:layout_width="wrap_content"
+        android:layout_width="34sp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#0000aa"
+        android:backgroundTint="#00000000"
+        app:iconTint="@color/white"
+        app:iconGravity="textStart"
+        app:iconSize="24sp"
+        app:cornerRadius="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
-        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

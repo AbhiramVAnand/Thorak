@@ -9,12 +9,17 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.abhiram.thorak.AppDatabase
+import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
+import com.google.android.material.button.MaterialButton
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.reflect.Type
 
-class StartUpAdapter(private val mList: List<AppListView>, val pm : PackageManager, val context : Context) : RecyclerView.Adapter<StartUpAdapter.ViewHolder>() {
+class StartUpAdapter(private val mList: List<AppList>, val pm : PackageManager, val context : Context, val appDb : AppDatabase) : RecyclerView.Adapter<StartUpAdapter.ViewHolder>() {
     var favlist : ArrayList<AppListView> = ArrayList()
     val gson : Gson = Gson()
     val pref = context.getSharedPreferences("lists",0)
@@ -30,25 +35,25 @@ class StartUpAdapter(private val mList: List<AppListView>, val pm : PackageManag
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
-        holder.imageView.setImageDrawable(pm.getApplicationIcon(ItemsViewModel.pkg))
+        holder.imageView.setImageDrawable(pm.getApplicationIcon(ItemsViewModel.pkgName))
         holder.textView.text = ItemsViewModel.appName
+
         if(ItemsViewModel.isFav){
-            holder.check.text = "Remove"
+            holder.check.setIconResource(R.drawable.ic_remove)
         }else{
-            holder.check.text = "Add"
+            holder.check.setIconResource(R.drawable.ic_add)
         }
         holder.check.setOnClickListener {
-            ItemsViewModel.isFav = !ItemsViewModel.isFav
             if(ItemsViewModel.isFav){
-                holder.check.text = "Remove"
-                favlist.add(AppListView(ItemsViewModel.appName,ItemsViewModel.pkg,true))
-                var json : String = gson.toJson(favlist)
-                pref.edit().putString("favList",json).commit()
+                holder.check.setIconResource(R.drawable.ic_add)
+                GlobalScope.launch {
+                    appDb.appDao().removeFav(ItemsViewModel.appName)
+                }
             }else{
-                holder.check.text = "Add"
-                favlist.remove(AppListView(ItemsViewModel.appName,ItemsViewModel.pkg,true))
-                var json : String = gson.toJson(favlist)
-                pref.edit().putString("favList",json).commit()
+                holder.check.setIconResource(R.drawable.ic_remove)
+                GlobalScope.launch {
+                    appDb.appDao().setFav(ItemsViewModel.appName)
+                }
             }
         }
     }
@@ -62,6 +67,6 @@ class StartUpAdapter(private val mList: List<AppListView>, val pm : PackageManag
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.icon)
         val textView: TextView = itemView.findViewById(R.id.name)
-        val check : Button = itemView.findViewById(R.id.check)
+        val check : MaterialButton = itemView.findViewById(R.id.check)
     }
 }

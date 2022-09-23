@@ -1,7 +1,11 @@
 package com.abhiram.thorak.fragments
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +13,12 @@ import android.view.*
 import android.widget.TextClock
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.abhiram.thorak.AppDatabase
+import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.Math.abs
 
 class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestureListener{
@@ -25,12 +34,16 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
     private lateinit var mgesturedetector : GestureDetector
     private lateinit var fragmentTransaction : FragmentTransaction
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         val inflate = inflater.inflate(R.layout.fragment_home, container, false)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        requireActivity().window.statusBarColor = resources.getColor(R.color.transparent)
+        requireActivity().window.navigationBarColor = resources.getColor(R.color.transparent)
         val font : Typeface = Typeface.createFromAsset(context?.assets, "Fonts/NotoSans-Regular.ttf")
         val time : TextClock = inflate.findViewById(R.id.time)
         val date : TextClock = inflate.findViewById(R.id.date)
@@ -44,8 +57,6 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         date.setTypeface(font)
         return inflate
     }
-
-
     override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
         mgesturedetector.onTouchEvent(p1)
         return true
@@ -76,8 +87,8 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
             val xdiff = e2?.x!! - e1?.x!!
             val ydiff = e2?.y!! - e1?.y!!
             val com : Int = compareValues(abs(xdiff),abs(ydiff))
-            var swipeThreshold = 250
-            var swipeVelocityThreshold = 250
+            var swipeThreshold = 200
+            var swipeVelocityThreshold = 200
             if(com==1){
                 if (abs(xdiff) > swipeThreshold && abs(p2) > swipeVelocityThreshold){
                     if(xdiff>0){

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkDim"
+    android:background="@color/darkBl"
     tools:context=".fragments.startup.FinishStartupFragment">
 
 
@@ -28,8 +28,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="211dp"
-        android:background="@drawable/buttonbg"
         android:text="Finish"
+        app:cornerRadius="15sp"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingRight="30sp"
+        android:paddingLeft="30sp"
+        android:textColor="@color/white"
+        android:backgroundTint="#56A0D3"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -1,42 +1,74 @@
 package com.abhiram.thorak.fragments
 
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.abhiram.thorak.AppDatabase
+import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
-import com.abhiram.thorak.adapter.AppListView
 import com.abhiram.thorak.adapter.FavAdapter
+import com.abhiram.thorak.adapter.StartUpAdapter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class EditfavFragment : Fragment() {
+
+    private lateinit var appDb : AppDatabase
+    private var appList : MutableList<AppList> = ArrayList()
+    private lateinit var allAppList : List<AppList>
+    private lateinit var inflate : View
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        val inflate = inflater.inflate(R.layout.fragment_editfav, container, false)
+        inflate = inflater.inflate(R.layout.fragment_editfav, container, false)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        requireActivity().window.statusBarColor = resources.getColor(R.color.darkDim)
+        requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         val pm: PackageManager? = context?.packageManager
-        var app : ArrayList<AppListView>? = ArrayList()
-        var pkg : List<PackageInfo> = pm!!.getInstalledPackages(PackageManager.GET_META_DATA)
-        for(i in pkg){
-            if(!isSystemPackage(i)) {
-                app!!.add(AppListView(pm.getApplicationLabel(i.applicationInfo) as String,i.packageName, false))
-            }
+        appDb = AppDatabase.getDatabse(requireContext())
+        allAppList = getApps()
+        for ( i in allAppList){
+            Log.e("AppName", "${i.appName}")
         }
-        app!!.sortBy { it.appName }
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = context?.let { FavAdapter(app, pm, it) }
+        val adapter = context?.let { FavAdapter(allAppList, pm!!, it, appDb) }
         recyclerview.adapter = adapter
         return inflate
     }
-    fun isSystemPackage(resolveInfo:PackageInfo): Boolean {
-        return resolveInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
+    override fun onResume() {
+        super.onResume()
+        allAppList = getApps()
+        for ( i in allAppList){
+            Log.e("AppName", "${i.appName}")
+        }
+        show()
+    }
+    private fun getApps(): List<AppList> {
+        GlobalScope.launch{
+            appList.addAll(appDb.appDao().getAll())
+        }
+        return appList.toList()
+    }
+    private fun show(){
+        val pm: PackageManager? = context?.packageManager
+        allAppList = getApps()
+        for ( i in allAppList){
+            Log.e("AppName", "${i.appName}")
+        }
+        val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
+        recyclerview.layoutManager = LinearLayoutManager(context)
+        val adapter = context?.let { StartUpAdapter(allAppList, pm!!, it,appDb) }
+        recyclerview.adapter = adapter
     }
 }

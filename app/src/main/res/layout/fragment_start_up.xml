@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkDim"
+    android:background="@color/darkBl"
     tools:context=".fragments.startup.StartUpFragment">
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160sp"
+        android:layout_height="160sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_iconfull"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,11 +25,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="15sp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Thorak"
         android:textColor="@color/white"
-        android:textFontWeight="800"
+        android:textFontWeight="600"
         android:textSize="58sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,10 +44,10 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.066">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textView3"
@@ -55,7 +56,7 @@
             android:fontFamily="@font/noto_sans"
             android:text="Since, it's a "
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/textView7"
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans"
             android:text="Launch"
-            android:textColor="@color/white"
+            android:textColor="#ffffff"
             android:textFontWeight="700"
             android:textSize="26sp" />
 
@@ -72,18 +73,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans"
+            android:layout_marginLeft="2sp"
             android:text="er"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="96dp"
-        android:text="Start Tour"
-        android:background="@drawable/buttonbg"
+        android:text="Start"
+        app:cornerRadius="15sp"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingRight="30sp"
+        android:paddingLeft="30sp"
+        android:textColor="@color/white"
+        android:backgroundTint="#56A0D3"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
