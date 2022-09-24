@@ -22,14 +22,6 @@ import kotlinx.coroutines.launch
 import java.lang.Math.abs
 
 class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestureListener{
-    /*
-    * TODO: Create Home fragment - Done
-    * TODO: Make the view transparent - Done
-    * TODO: Create Clock - Done
-    * TODO: Long press - Done
-    * TODO: Right and Left swipe functions - Done
-    * TODO: Up and Down swipe functions - Done
-    */
 
     private lateinit var mgesturedetector : GestureDetector
     private lateinit var fragmentTransaction : FragmentTransaction

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:id="@+id/holdre"
     android:padding="13sp"
     android:layout_height="wrap_content">
     <ImageView
@@ -23,7 +24,11 @@
         android:layout_marginLeft="20sp"
         android:fontFamily="@font/noto_sans"
         android:textColor="@color/white"
-        android:textFontWeight="550"
+        android:textFontWeight="600"
+        android:shadowColor = "@color/darkBl"
+        android:shadowDx = "-2"
+        android:shadowDy = "-2"
+        android:shadowRadius = "1"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

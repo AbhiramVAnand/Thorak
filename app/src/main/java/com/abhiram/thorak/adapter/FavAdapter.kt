@@ -22,9 +22,6 @@ import java.lang.reflect.Type
 
 
 class FavAdapter(private val mList: List<AppList>, val pm: PackageManager, val context: Context, val appDb: AppDatabase) : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
-    var favlist : ArrayList<AppListView> = ArrayList()
-    val gson : Gson = Gson()
-    val pref = context.getSharedPreferences("lists",0)
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view

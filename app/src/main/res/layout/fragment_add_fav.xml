@@ -18,6 +18,10 @@
         android:layout_marginTop="50sp"
         android:fontFamily="@font/noto_sans"
         android:text="Add"
+        android:shadowColor = "@color/darkBl"
+        android:shadowDx = "-2"
+        android:shadowDy = "-2"
+        android:shadowRadius = "1"
         android:textColor="@color/white"
         android:textFontWeight="500"
         android:textSize="24sp" />
@@ -28,6 +32,10 @@
         android:layout_marginTop="5sp"
         android:fontFamily="@font/noto_sans"
         android:text="Favourites"
+        android:shadowColor = "@color/darkBl"
+        android:shadowDx = "-2"
+        android:shadowDy = "-2"
+        android:shadowRadius = "1"
         android:textColor="@color/white"
         android:textFontWeight="500"
         android:textSize="28sp"/>

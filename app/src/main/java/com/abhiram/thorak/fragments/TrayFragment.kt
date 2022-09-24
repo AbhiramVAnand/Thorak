@@ -49,6 +49,7 @@ class TrayFragment : Fragment() {
         super.onResume()
         show()
     }
+
     private fun getApps(): List<AppList> {
         GlobalScope.launch{
             appList.addAll(appDb.appDao().getAll())
@@ -58,9 +59,6 @@ class TrayFragment : Fragment() {
     private fun show(){
         val pm: PackageManager? = context?.packageManager
         allAppList = getApps()
-        for ( i in allAppList){
-            Log.e("AppName", "${i.appName} -> ${i.isFav}")
-        }
         val recyclerview: RecyclerView = requireView().findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(context)
         val adapter = context?.let {CustomAdapter(allAppList, pm!!, it) }

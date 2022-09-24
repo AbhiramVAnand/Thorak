@@ -18,14 +18,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
-import com.abhiram.thorak.adapter.AppListView
-import com.abhiram.thorak.adapter.CustomAdapter
-import com.abhiram.thorak.adapter.FavAdapter
 import com.abhiram.thorak.adapter.StartUpAdapter
-import com.abhiram.thorak.fragments.HomeFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.sql.RowId
 
 class AddFavFragment : Fragment() {
 
@@ -56,7 +51,7 @@ class AddFavFragment : Fragment() {
         val adapter = context?.let { StartUpAdapter(allAppList, pm!!, it, appDb) }
         recyclerview.adapter = adapter
         done.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.frag_view, FinishStartupFragment()).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.frag_view, DirectionsFragment()).commit()
         }
         return inflate
     }
@@ -77,9 +72,6 @@ class AddFavFragment : Fragment() {
     private fun show(){
         val pm: PackageManager? = context?.packageManager
         allAppList = getApps()
-        for ( i in allAppList){
-            Log.e("AppName", "${i.appName}")
-        }
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
         recyclerview.layoutManager = LinearLayoutManager(context)
         val adapter = context?.let { StartUpAdapter(allAppList, pm!!, it,appDb) }

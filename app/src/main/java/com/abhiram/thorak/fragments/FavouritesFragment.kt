@@ -24,7 +24,6 @@ class FavouritesFragment : Fragment() {
     private var appList : MutableList<AppList> = ArrayList()
     private lateinit var allAppList : List<AppList>
     private lateinit var inflate : View
-    private lateinit var recyclerview: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,23 +34,19 @@ class FavouritesFragment : Fragment() {
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         requireActivity().window.statusBarColor = resources.getColor(R.color.darkDim)
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
-        val pm : PackageManager = requireContext().packageManager
+        Log.e("Created","true")
+        val pm: PackageManager? = context?.packageManager
         appDb = AppDatabase.getDatabse(requireContext())
         allAppList = getFavs()
-        recyclerview = inflate.findViewById(R.id.recyclerviewfav)
-        recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = context?.let { CustomAdapter(allAppList, pm, it) }
-        recyclerview.adapter = adapter
-        return inflate
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val pm: PackageManager? = context?.packageManager
-        allAppList = getFavs()
+        val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(context)
         val adapter = context?.let {CustomAdapter(allAppList, pm!!, it) }
         recyclerview.adapter = adapter
+        return inflate
+    }
+    override fun onResume() {
+        super.onResume()
+        show()
     }
 
     private fun getFavs(): List<AppList> {
@@ -59,6 +54,18 @@ class FavouritesFragment : Fragment() {
             appList.addAll(appDb.appDao().getFav())
         }
         return appList.toList()
+    }
+
+    fun show(){
+        Log.e("CreatedShow","true")
+        val pm: PackageManager? = context?.packageManager
+        appDb = AppDatabase.getDatabse(requireContext())
+        allAppList = getFavs()
+        Log.e("AppList","$allAppList")
+        val recyclerview: RecyclerView = requireView().findViewById(R.id.recyclerview)
+        recyclerview.layoutManager = LinearLayoutManager(context)
+        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it) }
+        recyclerview.adapter = adapter
     }
 
 }
