@@ -30,6 +30,9 @@ interface AppDao {
     @Delete
     suspend fun remove(app:AppList)
 
+    @Query("DELETE FROM app_list WHERE pkg_name LIKE :pkg")
+    suspend fun uninstalled(pkg:String)
+
     @Query("DELETE FROM app_list")
     suspend fun deleteAll()
 }
