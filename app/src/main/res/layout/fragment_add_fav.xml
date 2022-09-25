@@ -55,17 +55,21 @@
         tools:itemCount="5"
         tools:listitem="@layout/cardview" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:cornerRadius="15sp"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_semibold"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
-        android:paddingLeft="30sp"
         android:paddingRight="30sp"
+        android:paddingLeft="30sp"
+        android:textColor="@color/white"
+        android:backgroundTint="#56A0D3"
         android:layout_marginBottom="10sp"
-        android:textSize="18sp"
         android:text="Next" />
     </LinearLayout>
 

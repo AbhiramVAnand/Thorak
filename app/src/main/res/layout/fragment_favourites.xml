@@ -28,25 +28,24 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-<!--        For the time being, you should move to about fragment for editing favourites-->
-<!--        <Button-->
-<!--            android:id="@+id/edit"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="108dp"-->
-<!--            android:text="Edit"-->
-<!--            android:textSize="18sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.853"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/textView"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.473" />-->
+        <ImageView
+            android:id="@+id/edit"
+            android:layout_width="24sp"
+            android:layout_height="24sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginRight="30sp"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

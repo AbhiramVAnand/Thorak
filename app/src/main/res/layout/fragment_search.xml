@@ -3,12 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkDim"
     tools:context=".fragments.SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <AutoCompleteTextView
+        android:id="@+id/auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:hint="Search Apps"
+        android:background="@drawable/bglayout"
+        android:fontFamily="@font/noto_sans"
+        android:textColor="@color/offwhite"
+        android:backgroundTint="@color/darkBl"
+        android:textFontWeight="500"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp"/>
 
 </FrameLayout>

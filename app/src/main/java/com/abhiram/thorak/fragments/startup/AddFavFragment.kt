@@ -43,9 +43,6 @@ class AddFavFragment : Fragment() {
         val pm: PackageManager? = context?.packageManager
         appDb = AppDatabase.getDatabse(requireContext())
         allAppList = getApps()
-        for ( i in allAppList){
-            Log.e("AppName", "${i.appName}")
-        }
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
         recyclerview.layoutManager = LinearLayoutManager(context)
         val adapter = context?.let { StartUpAdapter(allAppList, pm!!, it, appDb) }
@@ -58,9 +55,6 @@ class AddFavFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         allAppList = getApps()
-        for ( i in allAppList){
-            Log.e("AppName", "${i.appName}")
-        }
         show()
     }
     private fun getApps(): List<AppList> {

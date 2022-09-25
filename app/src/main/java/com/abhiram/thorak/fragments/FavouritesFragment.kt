@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageView
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abhiram.thorak.AppDatabase
@@ -22,8 +24,9 @@ class FavouritesFragment : Fragment() {
 
     private lateinit var appDb : AppDatabase
     private var appList : MutableList<AppList> = ArrayList()
-    private lateinit var allAppList : List<AppList>
+    private lateinit var allAppList : MutableList<AppList>
     private lateinit var inflate : View
+    lateinit var fragmentTransaction: FragmentTransaction
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,35 +40,31 @@ class FavouritesFragment : Fragment() {
         Log.e("Created","true")
         val pm: PackageManager? = context?.packageManager
         appDb = AppDatabase.getDatabse(requireContext())
-        allAppList = getFavs()
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it) }
+        val edit : ImageView = inflate.findViewById(R.id.edit)
+        fragmentTransaction = parentFragmentManager.beginTransaction()
+        edit.setOnClickListener{
+            fragmentTransaction.replace(R.id.frag_view,EditfavFragment()).addToBackStack("editFav").commit()
+        }
+        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it,fragmentTransaction) }
         recyclerview.adapter = adapter
         return inflate
     }
-    override fun onResume() {
-        super.onResume()
-        show()
-    }
 
-    private fun getFavs(): List<AppList> {
-        GlobalScope.launch{
-            appList.addAll(appDb.appDao().getFav())
-        }
-        return appList.toList()
-    }
-
-    fun show(){
-        Log.e("CreatedShow","true")
-        val pm: PackageManager? = context?.packageManager
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         appDb = AppDatabase.getDatabse(requireContext())
         allAppList = getFavs()
-        Log.e("AppList","$allAppList")
-        val recyclerview: RecyclerView = requireView().findViewById(R.id.recyclerview)
-        recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it) }
-        recyclerview.adapter = adapter
+    }
+
+
+    private fun getFavs(): MutableList<AppList> {
+        GlobalScope.launch{
+            appList.clear()
+            appList.addAll(appDb.appDao().getFav())
+        }
+        return appList
     }
 
 }

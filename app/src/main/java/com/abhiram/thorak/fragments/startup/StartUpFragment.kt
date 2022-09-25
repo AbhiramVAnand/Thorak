@@ -1,10 +1,13 @@
 package com.abhiram.thorak.fragments.startup
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,12 +37,24 @@ class StartUpFragment : Fragment() {
         appDb = AppDatabase.getDatabse(requireContext())
         val pm: PackageManager? = context?.packageManager
         var pkg : List<PackageInfo> = pm!!.getInstalledPackages(PackageManager.GET_META_DATA)
-        for(i in pkg){
-            if(!isSystemPackage(i)) {
-                app = AppList(pm.getApplicationLabel(i.applicationInfo) as String ,i.packageName,false)
-                addApp(app)
-            }
+        val intent : Intent = Intent(Intent.ACTION_MAIN,null)
+        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+        var test : MutableList<ResolveInfo> = pm!!.queryIntentActivities(intent,0)
+        var j : Int =0
+        for (i in test){
+            j = j+1
+            Log.e("App Name",pm.getApplicationLabel(i.activityInfo.applicationInfo) as String )
+            app = AppList(pm.getApplicationLabel(i.activityInfo.applicationInfo) as String ,i.activityInfo
+                .applicationInfo.packageName,false)
+            addApp(app)
         }
+        Log.e("App Count",j.toString() )
+//        for(i in pkg){
+//            if(!isSystemPackage(i)) {
+//                app = AppList(pm.getApplicationLabel(i.applicationInfo) as String ,i.packageName,false)
+//                addApp(app)
+//            }
+//        }
         start.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.frag_view, AddFavFragment()).commit()
         }
@@ -48,6 +63,7 @@ class StartUpFragment : Fragment() {
 
 
     private fun isSystemPackage(resolveInfo: PackageInfo): Boolean {
+        resolveInfo.applicationInfo.flags
         return resolveInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
     }
 

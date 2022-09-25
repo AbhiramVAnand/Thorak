@@ -7,18 +7,15 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.*
 import android.widget.TextClock
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.abhiram.thorak.AppDatabase
-import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.lang.Math.abs
 
 class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestureListener{
@@ -49,6 +46,7 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         date.setTypeface(font)
         return inflate
     }
+
     override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
         mgesturedetector.onTouchEvent(p1)
         return true

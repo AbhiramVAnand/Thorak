@@ -9,6 +9,12 @@ interface AppDao {
     @Query("SELECT * FROM app_list ORDER BY appName ASC")
     fun getAll(): List<AppList>
 
+    @Query("SELECT is_fav FROM app_list WHERE appName LIKE :name")
+    suspend fun isfav(name:String):Int
+
+    @Query("SELECT appName FROM app_list")
+    suspend fun getNames():List<String>
+
     @Query("SELECT * From app_list WHERE is_fav LIKE 1 ORDER BY appName ASC")
     suspend fun getFav() : List<AppList>
 
@@ -23,4 +29,7 @@ interface AppDao {
 
     @Delete
     suspend fun remove(app:AppList)
+
+    @Query("DELETE FROM app_list")
+    suspend fun deleteAll()
 }

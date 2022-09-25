@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abhiram.thorak.AppDatabase
@@ -24,6 +25,7 @@ class TrayFragment : Fragment() {
     private lateinit var appDb : AppDatabase
     private var appList : MutableList<AppList> = ArrayList()
     private lateinit var allAppList : List<AppList>
+    lateinit var fragmentTransaction : FragmentTransaction
 
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
@@ -38,13 +40,19 @@ class TrayFragment : Fragment() {
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         appDb = AppDatabase.getDatabse(requireContext())
         allAppList = getApps()
+        fragmentTransaction = parentFragmentManager.beginTransaction()
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it) }
+        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it,fragmentTransaction) }
         recyclerview.adapter = adapter
         return inflate
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appDb = AppDatabase.getDatabse(requireContext())
+        allAppList = getApps()
+    }
     override fun onResume() {
         super.onResume()
         show()
@@ -52,6 +60,7 @@ class TrayFragment : Fragment() {
 
     private fun getApps(): List<AppList> {
         GlobalScope.launch{
+            appList.clear()
             appList.addAll(appDb.appDao().getAll())
         }
         return appList.toList()
@@ -61,7 +70,7 @@ class TrayFragment : Fragment() {
         allAppList = getApps()
         val recyclerview: RecyclerView = requireView().findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it) }
+        val adapter = context?.let {CustomAdapter(allAppList, pm!!, it,fragmentTransaction) }
         recyclerview.adapter = adapter
     }
 }
