@@ -56,7 +56,7 @@ class StartUpFragment : Fragment() {
 //            }
 //        }
         start.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.frag_view, AddFavFragment()).commit()
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, AddFavFragment()).commit()
         }
         return inflate
     }

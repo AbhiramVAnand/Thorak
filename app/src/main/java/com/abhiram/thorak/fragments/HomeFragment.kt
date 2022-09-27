@@ -2,6 +2,8 @@ package com.abhiram.thorak.fragments
 
 
 import android.annotation.SuppressLint
+import android.app.Notification
+import android.app.Service
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
@@ -22,6 +24,7 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
 
     private lateinit var mgesturedetector : GestureDetector
     private lateinit var fragmentTransaction : FragmentTransaction
+    private lateinit var inflate : View
 
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
@@ -29,7 +32,7 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        val inflate = inflater.inflate(R.layout.fragment_home, container, false)
+        inflate = inflater.inflate(R.layout.fragment_home, container, false)
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         requireActivity().window.statusBarColor = resources.getColor(R.color.transparent)
         requireActivity().window.navigationBarColor = resources.getColor(R.color.transparent)
@@ -45,6 +48,19 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         time.setTypeface(font)
         date.setTypeface(font)
         return inflate
+    }
+
+    fun hide(){
+        val clock : TextClock = inflate.findViewById(R.id.time)
+        val date  : TextClock = inflate.findViewById(R.id.date)
+        clock.visibility = View.INVISIBLE
+        date.visibility = View.INVISIBLE
+    }
+    fun show(){
+        val clock : TextClock = inflate.findViewById(R.id.time)
+        val date  : TextClock = inflate.findViewById(R.id.date)
+        clock.visibility = View.VISIBLE
+        date.visibility = View.VISIBLE
     }
 
     override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
@@ -83,11 +99,11 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
                 if (abs(xdiff) > swipeThreshold && abs(p2) > swipeVelocityThreshold){
                     if(xdiff>0){
 //                       Left To Right
-                        fragmentTransaction.replace(R.id.frag_view,FavouritesFragment()).addToBackStack("path").commit()
+                        fragmentTransaction.setCustomAnimations(R.anim.enter_from_left,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_left).replace(R.id.frag_view,FavouritesFragment()).addToBackStack("path").commit()
 //                        fragmentTransaction.replace(R.id.frag_view,EditfavFragment()).addToBackStack("path").commit()
                     }else{
 //                       Right to left
-                        fragmentTransaction.replace(R.id.frag_view,TrayFragment()).addToBackStack("path").commit()
+                        fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view,TrayFragment()).addToBackStack("path").commit()
                     }
                 }
             }
@@ -95,12 +111,12 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
                 if (abs(ydiff) > swipeThreshold && abs(p3) > swipeVelocityThreshold){
                     if(ydiff>0){
 //                        Up to down
-//                        val intent : Intent = Intent(android.provider.Settings.ACTION_QUICK_ACCESS_WALLET_SETTINGS)
-//                        requireContext().startActivity(intent)
+                        val intent : Intent = Intent(Service.NOTIFICATION_SERVICE)
+                        requireContext().startActivity(intent)
 //                        fragmentTransaction.replace(R.id.frag_view,AboutFragment()).addToBackStack("path").commit()
                     }else{
 //                        Down to Up
-                        fragmentTransaction.replace(R.id.frag_view,SearchFragment()).addToBackStack("path").commit()
+                        fragmentTransaction.setCustomAnimations(R.anim.to_up,R.anim.go_down,R.anim.to_down,R.anim.go_up).replace(R.id.frag_view,SearchFragment()).addToBackStack("path").commit()
                     }
                 }
             }

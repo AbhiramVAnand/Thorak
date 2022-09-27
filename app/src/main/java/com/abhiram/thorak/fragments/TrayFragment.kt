@@ -20,7 +20,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class TrayFragment : Fragment() {
+class TrayFragment : Fragment(){
 
     private lateinit var appDb : AppDatabase
     private var appList : MutableList<AppList> = ArrayList()
@@ -53,6 +53,7 @@ class TrayFragment : Fragment() {
         appDb = AppDatabase.getDatabse(requireContext())
         allAppList = getApps()
     }
+
     override fun onResume() {
         super.onResume()
         show()

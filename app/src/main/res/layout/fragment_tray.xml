@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/darkDim"
     android:orientation="vertical"
+    android:id="@+id/trayFrag"
     tools:context=".MainActivity">
         <TextView
             android:id="@+id/textView"
@@ -35,6 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15sp"
             android:layout_marginBottom="15sp"
+            android:scrollbars="vertical"
+            android:scrollbarSize="10sp"
+            android:scrollbarFadeDuration="1000"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

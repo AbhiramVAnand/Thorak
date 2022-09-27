@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
 import com.abhiram.thorak.fragments.AppInfoFragment
+import com.abhiram.thorak.fragments.HomeFragment
 
 private lateinit var pkgs : List<AppList>
 private lateinit var cntxt : Context
@@ -67,6 +68,7 @@ class CustomAdapter(private val mList: List<AppList>, val pm : PackageManager, v
             val i : Int = adapterPosition
             val launchIntent : Intent = pkm.getLaunchIntentForPackage(pkgs[i].pkgName)!!
             cntxt.startActivity(launchIntent)
+            fragT.replace(R.id.frag_view,HomeFragment()).commit()
         }
     }
 

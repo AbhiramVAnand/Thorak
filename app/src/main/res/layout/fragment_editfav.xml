@@ -7,60 +7,51 @@
     android:background="@color/darkDim"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15sp"
-            android:layout_marginTop="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="30sp"
             android:fontFamily="@font/noto_sans"
-            android:text="Add Favourites"
+            android:text="Add"
             android:shadowColor = "@color/darkBl"
             android:shadowDx = "-2"
             android:shadowDy = "-2"
             android:shadowRadius = "1"
             android:textColor="@color/white"
             android:textFontWeight="500"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/done"
+            android:textSize="26sp" />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="108dp"
-            android:text="Done"
-            android:textSize="18sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="5sp"
+            android:fontFamily="@font/noto_sans"
+            android:text="Favourites"
+            android:shadowColor = "@color/darkBl"
+            android:shadowDx = "-2"
+            android:shadowDy = "-2"
+            android:shadowRadius = "1"
+            android:textColor="@color/white"
+            android:textFontWeight="500"
+            android:textSize="32sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewfav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="5sp"
+            android:scrollbars="vertical"
+            android:scrollbarSize="10sp"
+            android:scrollbarFadeDuration="1000"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewfav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="15sp"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:itemCount="5"
-        tools:listitem="@layout/cardview" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:itemCount="5"
+            tools:listitem="@layout/cardview" />
 </LinearLayout>

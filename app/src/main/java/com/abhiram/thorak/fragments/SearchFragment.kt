@@ -2,30 +2,34 @@ package com.abhiram.thorak.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.ArrayAdapter
+import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
-import com.abhiram.thorak.AppDao
+import android.widget.EditText
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
-import com.abhiram.thorak.R.color
 import com.abhiram.thorak.adapter.SearchAdapter
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+
 
 class SearchFragment : Fragment() {
     private lateinit var appdb : AppDatabase
     private var appList : MutableList<AppList> = ArrayList()
     private lateinit var searchList : ArrayList<AppList>
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,12 +41,14 @@ class SearchFragment : Fragment() {
         requireActivity().window.statusBarColor = resources.getColor(R.color.darkDim)
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         val autoCompleteTextView : AutoCompleteTextView = inflate.findViewById(R.id.auto)
+        val fragT : FragmentTransaction = parentFragmentManager.beginTransaction()
         appdb = AppDatabase.getDatabse(requireContext())
         searchList = getApps() as ArrayList<AppList>
         for(i in searchList){
             Log.e("Search",i.toString())
         }
-        val arrayAdapter : SearchAdapter = SearchAdapter(requireContext(),R.layout.searchitem,searchList)
+        autoCompleteTextView.showKeyboard()
+        val arrayAdapter : SearchAdapter = SearchAdapter(requireContext(),R.layout.searchitem,searchList,fragT)
         autoCompleteTextView.threshold = 1
         autoCompleteTextView.setAdapter(arrayAdapter)
         return inflate
@@ -54,11 +60,13 @@ class SearchFragment : Fragment() {
         getApps()
     }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        appdb = AppDatabase.getDatabse(requireContext())
-//        getNames()
-//    }
+fun AutoCompleteTextView.showKeyboard() {
+    post {
+        requestFocus()
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }
+}
 private fun getApps(): List<AppList> {
     GlobalScope.launch{
         appList.clear()

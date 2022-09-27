@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.R
 import kotlinx.coroutines.Dispatchers
@@ -67,6 +68,7 @@ class AppInfoFragment : Fragment() ,View.OnClickListener{
             val uri = Uri.fromParts("package", pkgName, null)
             intent.data = uri
             requireContext().startActivity(intent)
+            parentFragmentManager.beginTransaction().replace(R.id.frag_view,HomeFragment()).commit()
         }
         return inflate
     }

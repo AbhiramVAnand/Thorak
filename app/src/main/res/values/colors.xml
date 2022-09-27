@@ -12,4 +12,6 @@
     <color name="darkBl">#88000000</color>
     <color name="offwhite">#FFFAF9F6</color>
     <color name="gray">#FF222831</color>
+    <color name="cyan">#FF324960</color>
+    <color name="cyandim">#883d3d3d</color>
 </resources>

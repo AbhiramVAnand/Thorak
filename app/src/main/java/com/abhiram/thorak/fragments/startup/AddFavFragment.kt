@@ -48,7 +48,7 @@ class AddFavFragment : Fragment() {
         val adapter = context?.let { StartUpAdapter(allAppList, pm!!, it, appDb) }
         recyclerview.adapter = adapter
         done.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.frag_view, DirectionsFragment()).commit()
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, DirectionsFragment()).commit()
         }
         return inflate
     }

@@ -11,16 +11,20 @@ import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
+import com.abhiram.thorak.fragments.HomeFragment
 
 class SearchAdapter(private val mContext: Context,
                        private val viewResourceId: Int,
-                       private val items: ArrayList<AppList>) : ArrayAdapter<AppList?>(mContext, viewResourceId, items.toList()){
+                       private val items: ArrayList<AppList>,
+                       private val frag : FragmentTransaction) : ArrayAdapter<AppList?>(mContext, viewResourceId, items.toList()){
 
     private val itemsAll = items.clone() as ArrayList<AppList>
     private var suggestions = ArrayList<AppList>()
     private lateinit var pm : PackageManager
+    private lateinit var fragT : FragmentTransaction
 
     @SuppressLint("ResourceAsColor")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -29,18 +33,23 @@ class SearchAdapter(private val mContext: Context,
             val vi = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             v = vi.inflate(viewResourceId, null)
         }
+        v?.setBackgroundColor(R.color.offwhite)
         pm = context.packageManager
-        val app: AppList? = suggestions[position]
-        if (app != null) {
-            val appName = v?.findViewById(R.id.textApp) as TextView?
-            val appIcon : ImageView? = v?.findViewById(R.id.testicon)
-            appIcon?.setImageDrawable(pm.getApplicationIcon(app.pkgName))
-            appName?.text = app.appName
-        }
-        v?.setOnClickListener {
-            val launchIntent : Intent = pm.getLaunchIntentForPackage(app!!.pkgName)!!
-            context.startActivity(launchIntent)
-        }
+        fragT = frag
+        try {
+            val app: AppList? = suggestions[position]
+            if (app != null) {
+                val appName = v?.findViewById(R.id.textApp) as TextView?
+                val appIcon : ImageView? = v?.findViewById(R.id.testicon)
+                appIcon?.setImageDrawable(pm.getApplicationIcon(app.pkgName))
+                appName?.text = app.appName
+            }
+            v?.setOnClickListener {
+                val launchIntent : Intent = pm.getLaunchIntentForPackage(app!!.pkgName)!!
+                context.startActivity(launchIntent)
+                fragT.replace(R.id.frag_view,HomeFragment()).commit()
+            }
+        }catch (e : Exception){ }
         return v!!
     }
 

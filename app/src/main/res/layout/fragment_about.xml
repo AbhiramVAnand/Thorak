@@ -1,15 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkBl"
+    android:orientation="vertical"
     tools:context=".fragments.AboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/textass"
-        android:text="About Fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_marginTop="30sp"
+            android:src="@drawable/ic_iconfull"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.123" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="60sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="2sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingBottom="0sp"
+            android:shadowColor="@color/darkBl"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:text="Thorak"
+            android:textColor="@color/offwhite"
+            android:textFontWeight="600"
+            android:textSize="52sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:shadowColor="@color/darkBl"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:text="v0.0.1"
+            android:textColor="@color/offwhite"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/chngfnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:text="Change Font"
+            android:fontFamily="@font/poppins"
+            android:shadowColor="@color/offwhite"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:textColor="@color/gray"
+            android:textSize="18sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:background="@drawable/bglayout"
+            android:textAlignment="center"
+            android:padding="5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.058" />
+
+        <TextView
+            android:id="@+id/setdef"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:fontFamily="@font/poppins"
+            android:shadowColor="@color/offwhite"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:textColor="@color/gray"
+            android:textSize="18sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:background="@drawable/bglayout"
+            android:textAlignment="center"
+            android:padding="5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chngfnt"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:gravity="center"
+            android:padding="15sp"
+            android:orientation="horizontal"
+            android:background="@drawable/bglayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setdef"
+            app:layout_constraintVertical_bias="0.755">
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:shadowColor="@color/offwhite"
+                android:id="@+id/tele"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1"
+                android:src="@drawable/ic_tele"/>
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:id="@+id/github"
+                android:shadowColor="@color/offwhite"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1"
+                android:src="@drawable/ic_github"
+                android:layout_marginRight="25sp"
+                android:layout_marginLeft="25sp"/>
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:id="@+id/plyst"
+                android:shadowColor="@color/offwhite"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1"
+                android:src="@drawable/ic_playstore"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

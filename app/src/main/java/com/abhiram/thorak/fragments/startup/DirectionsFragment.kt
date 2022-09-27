@@ -26,7 +26,7 @@ class DirectionsFragment : Fragment() {
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkBl)
         val next : Button = inflate.findViewById(R.id.nextD)
         next.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.frag_view, FinishStartupFragment()).commit()
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, FinishStartupFragment()).commit()
         }
         return inflate
     }
