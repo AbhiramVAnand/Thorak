@@ -16,6 +16,7 @@ import android.util.Log
 import android.view.*
 import android.widget.TextClock
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.R
 import java.lang.Math.abs
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         val date : TextClock = inflate.findViewById(R.id.date)
         val homeScreen : View? = inflate.findViewById(R.id.homeScreen)
         fragmentTransaction = parentFragmentManager.beginTransaction()
+        parentFragmentManager.popBackStack("path",FragmentManager.POP_BACK_STACK_INCLUSIVE)
         if (homeScreen != null) {
             homeScreen.setOnTouchListener(this)
         }
@@ -48,19 +50,6 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         time.setTypeface(font)
         date.setTypeface(font)
         return inflate
-    }
-
-    fun hide(){
-        val clock : TextClock = inflate.findViewById(R.id.time)
-        val date  : TextClock = inflate.findViewById(R.id.date)
-        clock.visibility = View.INVISIBLE
-        date.visibility = View.INVISIBLE
-    }
-    fun show(){
-        val clock : TextClock = inflate.findViewById(R.id.time)
-        val date  : TextClock = inflate.findViewById(R.id.date)
-        clock.visibility = View.VISIBLE
-        date.visibility = View.VISIBLE
     }
 
     override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {

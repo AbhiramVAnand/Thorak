@@ -42,7 +42,7 @@ class EditfavFragment : Fragment() {
         }
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = context?.let { FavAdapter(allAppList, pm!!, it, appDb) }
+        val adapter = FavAdapter(allAppList, pm!!,  appDb)
         recyclerview.adapter = adapter
         return inflate
     }

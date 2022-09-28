@@ -1,8 +1,8 @@
 package com.abhiram.thorak.adapter
 
+import android.R.attr.data
 import android.content.Context
 import android.content.pm.PackageManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +18,10 @@ import kotlinx.coroutines.launch
 
 private lateinit var appDB: AppDatabase
 private lateinit var pkgs : List<AppList>
+private lateinit var pkm : PackageManager
+private var appList : MutableList<AppList> = ArrayList()
 
-class FavAdapter(private val mList: List<AppList>, val pm: PackageManager, val context: Context, val appDb: AppDatabase) : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
+class FavAdapter(private val mList: List<AppList>, val pm: PackageManager, val appDb: AppDatabase) : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
     // create new views
     private lateinit var ItemsViewModel : AppList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +31,7 @@ class FavAdapter(private val mList: List<AppList>, val pm: PackageManager, val c
             .inflate(R.layout.favcard, parent, false)
         appDB = appDb
         pkgs = mList
+        pkm = pm
         return ViewHolder(view)
     }
 
@@ -37,17 +40,22 @@ class FavAdapter(private val mList: List<AppList>, val pm: PackageManager, val c
         ItemsViewModel = mList[position]
         holder.imageView.setImageDrawable(pm.getApplicationIcon(ItemsViewModel.pkgName))
         holder.textView.text = ItemsViewModel.appName
-        if(ItemsViewModel.isFav){
-            holder.check.setImageResource(R.drawable.ic_heartfilledwhite)
-        }else{
-            holder.check.setImageResource(R.drawable.ic_heartemptywhite)
+        GlobalScope.launch(Dispatchers.IO) {
+            val isfav : Int = appDB.appDao().isfav(ItemsViewModel.appName)
+            if (isfav==1){
+                holder.check.setImageResource(R.drawable.ic_heartfilledwhite)
+            }else{
+                holder.check.setImageResource(R.drawable.ic_heartemptywhite)
+            }
+            appList.clear()
+            appList.addAll(appDB.appDao().getAll())
+            FavAdapter(appList.toList(),pkm, appDB).notifyDataSetChanged()
         }
-
     }
+
     override fun getItemCount(): Int {
         return mList.size
     }
-
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView), View.OnClickListener {
         val imageView: ImageView = itemView.findViewById(R.id.icon)
@@ -69,6 +77,9 @@ class FavAdapter(private val mList: List<AppList>, val pm: PackageManager, val c
                     appDB.appDao().setFav(appname)
                     check.setImageResource(R.drawable.ic_heartfilledwhite)
                 }
+                appList.clear()
+                appList.addAll(appDB.appDao().getAll())
+                FavAdapter(appList.toList(),pkm, appDB).notifyDataSetChanged()
             }
         }
     }
