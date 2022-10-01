@@ -163,6 +163,16 @@
                 android:shadowDy="-2"
                 android:shadowRadius="1"
                 android:src="@drawable/ic_playstore"/>
+
+<!--            <ImageView-->
+<!--                android:layout_width="30sp"-->
+<!--                android:layout_height="30sp"-->
+<!--                android:id="@+id/share"-->
+<!--                android:shadowColor="@color/offwhite"-->
+<!--                android:shadowDx="-2"-->
+<!--                android:shadowDy="-2"-->
+<!--                android:shadowRadius="1"-->
+<!--                android:src="@drawable/ic_share"/>-->
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

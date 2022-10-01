@@ -68,7 +68,6 @@ class CustomAdapter(private val mList: List<AppList>, val pm : PackageManager, v
             val i : Int = adapterPosition
             val launchIntent : Intent = pkm.getLaunchIntentForPackage(pkgs[i].pkgName)!!
             cntxt.startActivity(launchIntent)
-            fragT.replace(R.id.frag_view,HomeFragment()).commit()
         }
     }
 
