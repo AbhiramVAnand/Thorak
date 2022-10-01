@@ -20,10 +20,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.reflect.Type
 
-private lateinit var appDB: AppDatabase
-private lateinit var pkgs : List<AppList>
 
-class StartUpAdapter(private val mList: List<AppList>, val pm : PackageManager, val context : Context, val appDb : AppDatabase) : RecyclerView.Adapter<StartUpAdapter.ViewHolder>() {
+private var appList : MutableList<AppList> = ArrayList()
+
+class StartUpAdapter(private var mList: List<AppList>, val pm : PackageManager, val context : Context, val appDb : AppDatabase) : RecyclerView.Adapter<StartUpAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,8 +31,6 @@ class StartUpAdapter(private val mList: List<AppList>, val pm : PackageManager, 
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.favcard, parent, false)
-        appDB = appDb
-        pkgs = mList
         return ViewHolder(view)
     }
 
@@ -46,6 +44,25 @@ class StartUpAdapter(private val mList: List<AppList>, val pm : PackageManager, 
         }else{
             holder.check.setImageResource(R.drawable.ic_heartemptywhite)
         }
+        holder.check.setOnClickListener {
+            var i : Int = position
+            val check : ImageView = holder.check
+            GlobalScope.launch(Dispatchers.IO) {
+                val appname :String = mList[i].appName
+                val isfav : Int = appDb.appDao().isfav(appname)
+                if (isfav==1){
+                    appDb.appDao().removeFav(appname)
+                    check.setImageResource(R.drawable.ic_heartemptywhite)
+                }else{
+                    appDb.appDao().setFav(appname)
+                    check.setImageResource(R.drawable.ic_heartfilledwhite)
+                }
+                appList.clear()
+                appList.addAll(appDb.appDao().getAll())
+                mList = appList.toList()
+            }
+            this.notifyDataSetChanged()
+        }
     }
 
     // return the number of the items in the list
@@ -54,27 +71,10 @@ class StartUpAdapter(private val mList: List<AppList>, val pm : PackageManager, 
     }
 
     // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView), View.OnClickListener {
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView){
         val imageView: ImageView = itemView.findViewById(R.id.icon)
         val textView: TextView = itemView.findViewById(R.id.name)
         val check : ImageView = itemView.findViewById(R.id.check)
 
-        init {
-            itemView.findViewById<ImageView>(R.id.check).setOnClickListener(this)
-        }
-        override fun onClick(p0: View?) {
-            val i : Int = adapterPosition
-            val check : ImageView = itemView.findViewById(R.id.check)
-            GlobalScope.launch(Dispatchers.IO) {
-                val isfav : Int = appDB.appDao().isfav(pkgs[i].appName)
-                if (isfav==1){
-                    appDB.appDao().removeFav(pkgs[i].appName)
-                    check.setImageResource(R.drawable.ic_heartemptywhite)
-                }else{
-                    appDB.appDao().setFav(pkgs[i].appName)
-                    check.setImageResource(R.drawable.ic_heartfilledwhite)
-                }
-            }
-        }
     }
 }

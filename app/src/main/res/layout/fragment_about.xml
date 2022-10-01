@@ -65,30 +65,30 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/chngfnt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:text="Change Font"
-            android:fontFamily="@font/poppins"
-            android:shadowColor="@color/offwhite"
-            android:shadowDx="-2"
-            android:shadowDy="-2"
-            android:shadowRadius="1"
-            android:textColor="@color/gray"
-            android:textSize="18sp"
-            android:layout_marginLeft="30sp"
-            android:layout_marginRight="30sp"
-            android:background="@drawable/bglayout"
-            android:textAlignment="center"
-            android:padding="5sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.058" />
+<!--        <TextView-->
+<!--            android:id="@+id/chngfnt"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20sp"-->
+<!--            android:text="Change Font"-->
+<!--            android:fontFamily="@font/poppins"-->
+<!--            android:shadowColor="@color/offwhite"-->
+<!--            android:shadowDx="-2"-->
+<!--            android:shadowDy="-2"-->
+<!--            android:shadowRadius="1"-->
+<!--            android:textColor="@color/gray"-->
+<!--            android:textSize="18sp"-->
+<!--            android:layout_marginLeft="30sp"-->
+<!--            android:layout_marginRight="30sp"-->
+<!--            android:background="@drawable/bglayout"-->
+<!--            android:textAlignment="center"-->
+<!--            android:padding="5sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.504"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView5"-->
+<!--            app:layout_constraintVertical_bias="0.058" />-->
 
         <TextView
             android:id="@+id/setdef"
@@ -112,7 +112,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chngfnt"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
             app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
