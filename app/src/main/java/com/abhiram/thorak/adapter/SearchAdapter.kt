@@ -47,7 +47,6 @@ class SearchAdapter(private val mContext: Context,
             v?.setOnClickListener {
                 val launchIntent : Intent = pm.getLaunchIntentForPackage(app!!.pkgName)!!
                 context.startActivity(launchIntent)
-                fragT.replace(R.id.frag_view,HomeFragment()).commit()
             }
         }catch (e : Exception){ }
         return v!!
