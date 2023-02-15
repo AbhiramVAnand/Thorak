@@ -25,6 +25,21 @@ class EditfavFragment : Fragment() {
     private lateinit var allAppList : List<AppList>
     private lateinit var inflate : View
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appDb = AppDatabase.getDatabse(requireContext())
+        allAppList = getApps()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        allAppList = getApps()
+        for ( i in allAppList){
+            Log.e("AppName", "${i.appName}")
+        }
+        show()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -36,7 +51,6 @@ class EditfavFragment : Fragment() {
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         val pm: PackageManager? = context?.packageManager
         appDb = AppDatabase.getDatabse(requireContext())
-        allAppList = getApps()
         for ( i in allAppList){
             Log.e("AppName", "${i.appName}")
         }
@@ -46,14 +60,7 @@ class EditfavFragment : Fragment() {
         recyclerview.adapter = adapter
         return inflate
     }
-    override fun onResume() {
-        super.onResume()
-        allAppList = getApps()
-        for ( i in allAppList){
-            Log.e("AppName", "${i.appName}")
-        }
-        show()
-    }
+
     private fun getApps(): List<AppList> {
         GlobalScope.launch{
             appList.addAll(appDb.appDao().getAll())

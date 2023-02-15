@@ -4,22 +4,23 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Filter
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.inputmethod.EditorInfo
+import android.widget.*
 import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
-import com.abhiram.thorak.fragments.HomeFragment
 
-class SearchAdapter(private val mContext: Context,
-                       private val viewResourceId: Int,
-                       private val items: ArrayList<AppList>,
-                       private val frag : FragmentTransaction) : ArrayAdapter<AppList?>(mContext, viewResourceId, items.toList()){
+class SearchAdapter(
+    private val mContext: Context,
+    private val viewResourceId: Int,
+    private val items: ArrayList<AppList>,
+    private val frag: FragmentTransaction,
+    private val autoCompleteTextView: AutoCompleteTextView
+) : ArrayAdapter<AppList?>(mContext, viewResourceId, items.toList()){
 
     private val itemsAll = items.clone() as ArrayList<AppList>
     private var suggestions = ArrayList<AppList>()
@@ -47,6 +48,15 @@ class SearchAdapter(private val mContext: Context,
             v?.setOnClickListener {
                 val launchIntent : Intent = pm.getLaunchIntentForPackage(app!!.pkgName)!!
                 context.startActivity(launchIntent)
+            }
+            autoCompleteTextView.setOnEditorActionListener { textView, action, event ->
+                var handled = false
+                if (action == EditorInfo.IME_ACTION_DONE) {
+                    val launchIntent : Intent = pm.getLaunchIntentForPackage(app!!.pkgName)!!
+                    context.startActivity(launchIntent)
+                    handled = true
+                }
+                handled
             }
         }catch (e : Exception){ }
         return v!!

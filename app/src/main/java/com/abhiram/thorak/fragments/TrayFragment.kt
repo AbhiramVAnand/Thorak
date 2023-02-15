@@ -27,6 +27,17 @@ class TrayFragment : Fragment(){
     private lateinit var allAppList : List<AppList>
     lateinit var fragmentTransaction : FragmentTransaction
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appDb = AppDatabase.getDatabse(requireContext())
+        allAppList = getApps()
+    }
+//
+    override fun onResume() {
+        super.onResume()
+        show()
+    }
+
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,24 +50,12 @@ class TrayFragment : Fragment(){
         requireActivity().window.statusBarColor = resources.getColor(R.color.darkDim)
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         appDb = AppDatabase.getDatabse(requireContext())
-        allAppList = getApps()
         fragmentTransaction = parentFragmentManager.beginTransaction()
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(context)
         val adapter = context?.let {CustomAdapter(allAppList, pm!!, it,fragmentTransaction) }
         recyclerview.adapter = adapter
         return inflate
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        appDb = AppDatabase.getDatabse(requireContext())
-        allAppList = getApps()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        show()
     }
 
     private fun getApps(): List<AppList> {

@@ -29,6 +29,17 @@ class AddFavFragment : Fragment() {
     private lateinit var allAppList : List<AppList>
     private lateinit var inflate: View
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appDb = AppDatabase.getDatabse(requireContext())
+        allAppList = getApps()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        allAppList = getApps()
+        show()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +53,6 @@ class AddFavFragment : Fragment() {
         val done : Button = inflate.findViewById(R.id.done)
         val pm: PackageManager? = context?.packageManager
         appDb = AppDatabase.getDatabse(requireContext())
-        allAppList = getApps()
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
         recyclerview.layoutManager = LinearLayoutManager(context)
         val adapter = context?.let { StartUpAdapter(allAppList, pm!!, it, appDb) }
@@ -52,11 +62,7 @@ class AddFavFragment : Fragment() {
         }
         return inflate
     }
-    override fun onResume() {
-        super.onResume()
-        allAppList = getApps()
-        show()
-    }
+
     private fun getApps(): List<AppList> {
         GlobalScope.launch{
             appList.addAll(appDb.appDao().getAll())
