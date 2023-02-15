@@ -29,7 +29,7 @@
         android:shadowDx = "-2"
         android:shadowDy = "-2"
         android:shadowRadius = "1"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/icon"

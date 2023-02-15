@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.TextView
 import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
@@ -34,6 +35,10 @@ class StartUpFragment : Fragment() {
         // Inflate the layout for this fragment
         val inflate = inflater.inflate(R.layout.fragment_start_up, container, false)
         val start : Button = inflate.findViewById(R.id.start)
+// Textview value using variable
+        val testing : TextView =inflate.findViewById(R.id.textView2)
+        testing.setTextSize(58F)
+//
         appDb = AppDatabase.getDatabse(requireContext())
         val pm: PackageManager? = context?.packageManager
         var pkg : List<PackageInfo> = pm!!.getInstalledPackages(PackageManager.GET_META_DATA)
@@ -61,6 +66,15 @@ class StartUpFragment : Fragment() {
         return inflate
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    }
 
     private fun isSystemPackage(resolveInfo: PackageInfo): Boolean {
         resolveInfo.applicationInfo.flags

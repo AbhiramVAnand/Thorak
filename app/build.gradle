@@ -11,8 +11,8 @@ android {
         applicationId "com.abhiram.thorak"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "0.0.1"
+        versionCode 3
+        versionName "0.1.0-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

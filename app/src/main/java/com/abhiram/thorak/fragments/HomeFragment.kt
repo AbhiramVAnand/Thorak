@@ -5,12 +5,9 @@ import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.Service
 import android.content.Intent
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.graphics.Typeface
-import android.net.Uri
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.provider.Settings
 import android.util.Log
 import android.view.*
@@ -20,6 +17,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.R
 import java.lang.Math.abs
+
 
 class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestureListener{
 
@@ -49,6 +47,11 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         mgesturedetector = GestureDetector(this)
         time.setTypeface(font)
         date.setTypeface(font)
+        time.setOnClickListener {
+            val openClockIntent = Intent(AlarmClock.ACTION_SHOW_ALARMS)
+            openClockIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            requireContext().startActivity(openClockIntent)
+        }
         return inflate
     }
 
@@ -100,8 +103,8 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
                 if (abs(ydiff) > swipeThreshold && abs(p3) > swipeVelocityThreshold){
                     if(ydiff>0){
 //                        Up to down
-                        val intent : Intent = Intent(Service.NOTIFICATION_SERVICE)
-                        requireContext().startActivity(intent)
+//                        val intent : Intent = Intent(Settings.ACTION_SETTINGS)
+//                        requireContext().startActivity(intent)
 //                        fragmentTransaction.replace(R.id.frag_view,AboutFragment()).addToBackStack("path").commit()
                     }else{
 //                        Down to Up

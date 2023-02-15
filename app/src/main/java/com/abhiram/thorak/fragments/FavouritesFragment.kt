@@ -28,6 +28,12 @@ class FavouritesFragment : Fragment() {
     private lateinit var inflate : View
     lateinit var fragmentTransaction: FragmentTransaction
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appDb = AppDatabase.getDatabse(requireContext())
+        allAppList = getFavs()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -51,13 +57,6 @@ class FavouritesFragment : Fragment() {
         recyclerview.adapter = adapter
         return inflate
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        appDb = AppDatabase.getDatabse(requireContext())
-        allAppList = getFavs()
-    }
-
 
     private fun getFavs(): MutableList<AppList> {
         GlobalScope.launch{
