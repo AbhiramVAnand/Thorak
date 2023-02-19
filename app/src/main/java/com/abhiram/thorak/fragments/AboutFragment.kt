@@ -16,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.abhiram.thorak.R
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 
 
 class AboutFragment : Fragment() {
@@ -33,7 +34,11 @@ class AboutFragment : Fragment() {
         val tele : ImageView = inflate.findViewById(R.id.tele)
         val gihtub : ImageView = inflate.findViewById(R.id.github)
         val playstore : ImageView = inflate.findViewById(R.id.plyst)
-//        val share : ImageView = inflate.findViewById(R.id.share)
+        val sharedPreferenceHelper = SharedPreferenceHelper()
+
+        sharedPreferenceHelper.SharedPreferenceHelperInit(requireContext())
+        setdef.typeface = sharedPreferenceHelper.getFont(requireContext())
+        setdef.textSize = sharedPreferenceHelper.getFontSize()
         if(isMyLauncherDefault()){
             setdef.text = "Thorak is your Default Launcher"
         }else{

@@ -1,4 +1,4 @@
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,74 +6,51 @@
     android:layout_height="match_parent"
     android:background="@color/darkDim"
     tools:context=".MainActivity">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="50sp"
-        android:fontFamily="@font/noto_sans"
-        android:text="Add"
-        android:shadowColor = "@color/darkBl"
-        android:shadowDx = "-2"
-        android:shadowDy = "-2"
-        android:shadowRadius = "1"
-        android:textColor="@color/white"
-        android:textFontWeight="500"
-        android:textSize="24sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="5sp"
-        android:fontFamily="@font/noto_sans"
-        android:text="Favourites"
-        android:shadowColor = "@color/darkBl"
-        android:shadowDx = "-2"
-        android:shadowDy = "-2"
-        android:shadowRadius = "1"
-        android:textColor="@color/white"
-        android:textFontWeight="500"
-        android:textSize="28sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textViewadd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="50sp"
+                android:layout_marginBottom="10sp"
+                android:text="Add\nFavourites"
+                android:shadowColor = "@color/darkBl"
+                android:shadowDx = "-2"
+                android:shadowDy = "-2"
+                android:shadowRadius = "1"
+                android:textColor="@color/white"
+                android:textFontWeight="500"
+                android:textSize="24sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewfav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="5sp"
-        android:scrollbars="vertical"
-        android:scrollbarSize="10sp"
-        android:scrollbarFadeDuration="1000"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:itemCount="5"
-        tools:listitem="@layout/cardview" />
-
-    <com.google.android.material.button.MaterialButton
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewfav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="@android:color/transparent"
+                android:scrollbarFadeDuration="1000"
+                android:scrollbarSize="10sp"
+                android:scrollbars="vertical"
+                tools:itemCount="5"
+                tools:listitem="@layout/cardview" />
+        </LinearLayout>
+    </ScrollView>
+    <ImageButton
         android:id="@+id/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:cornerRadius="15sp"
-        android:textSize="18sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:paddingTop="5sp"
-        android:paddingBottom="5sp"
-        android:paddingRight="30sp"
-        android:paddingLeft="30sp"
-        android:textColor="@color/white"
-        android:backgroundTint="#56A0D3"
-        android:layout_marginBottom="10sp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:background="@drawable/arrowfilled"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="40sp"
+        android:layout_alignParentBottom="true"
         android:text="Next" />
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

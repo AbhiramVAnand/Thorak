@@ -34,7 +34,7 @@ class PackageChangeReceiver : BroadcastReceiver() {
     private fun installed(pkg : String){
         GlobalScope.launch(Dispatchers.IO) {
             val appName :String = pm.getApplicationLabel(pm.getApplicationInfo(pkg,0)) as String
-            app = AppList(appName,pkg,false)
+            app = AppList(appName,pkg,false,false)
             appDb.appDao().add(app)
             appDb.appDao().getAll()
         }

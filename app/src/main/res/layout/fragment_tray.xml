@@ -9,26 +9,18 @@
     android:id="@+id/trayFrag"
     tools:context=".MainActivity">
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewtray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans"
             android:text="Apps"
-            android:textFontWeight="500"
             android:shadowColor = "@color/darkBl"
             android:shadowDx = "-2"
             android:shadowDy = "-2"
             android:shadowRadius = "1"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:textColor="@color/white"
             android:layout_marginLeft="20sp"
-            android:layout_marginTop="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_marginTop="30sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"

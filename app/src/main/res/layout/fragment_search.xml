@@ -18,11 +18,9 @@
         android:singleLine="true"
         android:focusable="true"
         android:background="@drawable/bglayout"
-        android:fontFamily="@font/noto_sans"
         android:textColorHint="@color/offwhite"
         android:textColor="@color/offwhite"
         android:backgroundTint="@color/darkBl"
-        android:textFontWeight="500"
         android:layout_marginTop="20sp"
         android:layout_marginRight="20sp"
         android:layout_marginLeft="20sp"/>

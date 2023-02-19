@@ -1,6 +1,7 @@
 package com.abhiram.thorak.fragments.startup
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
@@ -14,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.AppList
@@ -34,11 +36,7 @@ class StartUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val inflate = inflater.inflate(R.layout.fragment_start_up, container, false)
-        val start : Button = inflate.findViewById(R.id.start)
-// Textview value using variable
-        val testing : TextView =inflate.findViewById(R.id.textView2)
-        testing.setTextSize(58F)
-//
+        val start : ImageButton = inflate.findViewById(R.id.start)
         appDb = AppDatabase.getDatabse(requireContext())
         val pm: PackageManager? = context?.packageManager
         var pkg : List<PackageInfo> = pm!!.getInstalledPackages(PackageManager.GET_META_DATA)
@@ -50,32 +48,16 @@ class StartUpFragment : Fragment() {
             j = j+1
             Log.e("App Name",pm.getApplicationLabel(i.activityInfo.applicationInfo) as String )
             app = AppList(pm.getApplicationLabel(i.activityInfo.applicationInfo) as String ,i.activityInfo
-                .applicationInfo.packageName,false)
+                .applicationInfo.packageName,false,false)
             addApp(app)
+            hide("Instagram")
         }
         Log.e("App Count",j.toString() )
-//        for(i in pkg){
-//            if(!isSystemPackage(i)) {
-//                app = AppList(pm.getApplicationLabel(i.applicationInfo) as String ,i.packageName,false)
-//                addApp(app)
-//            }
-//        }
         start.setOnClickListener {
             parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, AddFavFragment()).commit()
         }
         return inflate
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-    }
-
     private fun isSystemPackage(resolveInfo: PackageInfo): Boolean {
         resolveInfo.applicationInfo.flags
         return resolveInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
@@ -84,6 +66,11 @@ class StartUpFragment : Fragment() {
     private fun addApp(app : AppList){
         GlobalScope.launch(Dispatchers.IO) {
             appDb.appDao().add(app)
+        }
+    }
+    private fun hide(app : String){
+        GlobalScope.launch(Dispatchers.IO) {
+            appDb.appDao().hide(app)
         }
     }
 }

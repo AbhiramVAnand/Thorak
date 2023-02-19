@@ -18,6 +18,7 @@ import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
 import com.abhiram.thorak.adapter.SearchAdapter
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -40,11 +41,12 @@ class SearchFragment : Fragment() {
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         val autoCompleteTextView : AutoCompleteTextView = inflate.findViewById(R.id.auto)
         val fragT : FragmentTransaction = parentFragmentManager.beginTransaction()
+        val sharedPreferenceHelper = SharedPreferenceHelper()
+
+        sharedPreferenceHelper.SharedPreferenceHelperInit(requireContext())
+        autoCompleteTextView.typeface = sharedPreferenceHelper.getFont(requireContext())
         appdb = AppDatabase.getDatabse(requireContext())
         searchList = getApps() as ArrayList<AppList>
-        for(i in searchList){
-            Log.e("Search",i.toString())
-        }
         autoCompleteTextView.showKeyboard()
         val arrayAdapter : SearchAdapter = SearchAdapter(requireContext(),R.layout.searchitem,searchList,fragT,autoCompleteTextView)
         autoCompleteTextView.threshold = 1

@@ -8,34 +8,19 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewedit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
             android:layout_marginTop="30sp"
-            android:fontFamily="@font/noto_sans"
-            android:text="Add"
+            android:text="Add\nFavourites"
             android:shadowColor = "@color/darkBl"
             android:shadowDx = "-2"
             android:shadowDy = "-2"
             android:shadowRadius = "1"
             android:textColor="@color/white"
             android:textFontWeight="500"
-            android:textSize="26sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="5sp"
-            android:fontFamily="@font/noto_sans"
-            android:text="Favourites"
-            android:shadowColor = "@color/darkBl"
-            android:shadowDx = "-2"
-            android:shadowDy = "-2"
-            android:shadowRadius = "1"
-            android:textColor="@color/white"
-            android:textFontWeight="500"
-            android:textSize="32sp"/>
+            android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewfav"
