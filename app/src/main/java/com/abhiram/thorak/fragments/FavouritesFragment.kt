@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
 import com.abhiram.thorak.adapter.CustomAdapter
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -45,6 +47,11 @@ class FavouritesFragment : Fragment() {
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         Log.e("Created","true")
         val pm: PackageManager? = context?.packageManager
+        val fav : TextView = inflate.findViewById(R.id.textViewfav)
+        val sharedPreferenceHelper = SharedPreferenceHelper()
+
+        sharedPreferenceHelper.SharedPreferenceHelperInit(requireContext())
+        fav.typeface = sharedPreferenceHelper.getFont(requireContext())
         appDb = AppDatabase.getDatabse(requireContext())
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(context)

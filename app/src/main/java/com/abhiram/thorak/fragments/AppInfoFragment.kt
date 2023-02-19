@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.R
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -51,6 +52,11 @@ class AppInfoFragment : Fragment() ,View.OnClickListener{
         val appInfo : ImageView = inflate.findViewById(R.id.appinfo)
         val uninstall : ImageView = inflate.findViewById(R.id.uninstall)
         val appName : String = pkgName.toString()
+        val sharedPreferenceHelper = SharedPreferenceHelper()
+
+        sharedPreferenceHelper.SharedPreferenceHelperInit(requireContext())
+        name.typeface = sharedPreferenceHelper.getFont(requireContext())
+        name.textSize = sharedPreferenceHelper.getFontSize()
         nameApp = pm.getApplicationLabel(pm.getApplicationInfo(appName,0)).toString()
         icon.setImageDrawable(pm.getApplicationIcon(appName))
         name.text = nameApp

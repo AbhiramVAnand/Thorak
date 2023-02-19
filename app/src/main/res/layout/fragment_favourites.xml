@@ -7,17 +7,17 @@
     android:background="@color/darkDim"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewfav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
             android:layout_marginTop="30sp"
-            android:fontFamily="@font/noto_sans"
             android:text="Favourites"
             android:shadowColor = "@color/darkBl"
             android:shadowDx = "-2"
@@ -25,28 +25,17 @@
             android:shadowRadius = "1"
             android:textColor="@color/white"
             android:textFontWeight="500"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:textSize="24sp"/>
 
         <ImageView
             android:id="@+id/edit"
-            android:layout_width="24sp"
-            android:layout_height="24sp"
-            android:layout_marginTop="30sp"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="35sp"
             android:layout_marginRight="30sp"
-            android:src="@drawable/ic_settings"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.52" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:src="@drawable/ic_settings" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

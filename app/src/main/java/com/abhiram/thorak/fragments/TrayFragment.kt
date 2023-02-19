@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
 import com.abhiram.thorak.adapter.CustomAdapter
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -49,6 +51,11 @@ class TrayFragment : Fragment(){
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         requireActivity().window.statusBarColor = resources.getColor(R.color.darkDim)
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
+        val fav : TextView = inflate.findViewById(R.id.textViewtray)
+        val sharedPreferenceHelper = SharedPreferenceHelper()
+
+        sharedPreferenceHelper.SharedPreferenceHelperInit(requireContext())
+        fav.typeface = sharedPreferenceHelper.getFont(requireContext())
         appDb = AppDatabase.getDatabse(requireContext())
         fragmentTransaction = parentFragmentManager.beginTransaction()
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerview)

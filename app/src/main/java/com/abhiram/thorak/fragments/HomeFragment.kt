@@ -12,10 +12,12 @@ import android.provider.Settings
 import android.util.Log
 import android.view.*
 import android.widget.TextClock
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.R
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 import java.lang.Math.abs
 
 
@@ -35,18 +37,24 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         requireActivity().window.statusBarColor = resources.getColor(R.color.transparent)
         requireActivity().window.navigationBarColor = resources.getColor(R.color.transparent)
-        val font : Typeface = Typeface.createFromAsset(context?.assets, "Fonts/NotoSans-Regular.ttf")
         val time : TextClock = inflate.findViewById(R.id.time)
         val date : TextClock = inflate.findViewById(R.id.date)
         val homeScreen : View? = inflate.findViewById(R.id.homeScreen)
+        val sharedPreferenceHelper = SharedPreferenceHelper()
+        sharedPreferenceHelper.SharedPreferenceHelperInit(requireContext())
+        val font : Typeface = sharedPreferenceHelper.getClockFont(requireContext())
+        time.typeface=font
+        date.typeface=font
+        time.textSize = sharedPreferenceHelper.getClockSize()
+        date.textSize = sharedPreferenceHelper.getDateSize()
         fragmentTransaction = parentFragmentManager.beginTransaction()
         parentFragmentManager.popBackStack("path",FragmentManager.POP_BACK_STACK_INCLUSIVE)
         if (homeScreen != null) {
             homeScreen.setOnTouchListener(this)
         }
         mgesturedetector = GestureDetector(this)
-        time.setTypeface(font)
-        date.setTypeface(font)
+        time.typeface = font
+        date.typeface = font
         time.setOnClickListener {
             val openClockIntent = Intent(AlarmClock.ACTION_SHOW_ALARMS)
             openClockIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -83,7 +91,7 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, p2: Float, p3: Float): Boolean {
         try {
             val xdiff = e2?.x!! - e1?.x!!
-            val ydiff = e2?.y!! - e1?.y!!
+            val ydiff = e2.y!! - e1.y!!
             val com : Int = compareValues(abs(xdiff),abs(ydiff))
             var swipeThreshold = 200
             var swipeVelocityThreshold = 200

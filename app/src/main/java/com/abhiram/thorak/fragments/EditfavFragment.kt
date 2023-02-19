@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abhiram.thorak.AppDatabase
@@ -15,6 +16,7 @@ import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
 import com.abhiram.thorak.adapter.FavAdapter
 import com.abhiram.thorak.adapter.StartUpAdapter
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -50,13 +52,15 @@ class EditfavFragment : Fragment() {
         requireActivity().window.statusBarColor = resources.getColor(R.color.darkDim)
         requireActivity().window.navigationBarColor = resources.getColor(R.color.darkDim)
         val pm: PackageManager? = context?.packageManager
+        val addFav : TextView = inflate.findViewById(R.id.textViewedit)
+        val sharedPreferenceHelper = SharedPreferenceHelper()
+
+        sharedPreferenceHelper.SharedPreferenceHelperInit(requireContext())
+        addFav.typeface = sharedPreferenceHelper.getFont(requireContext())
         appDb = AppDatabase.getDatabse(requireContext())
-        for ( i in allAppList){
-            Log.e("AppName", "${i.appName}")
-        }
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = FavAdapter(allAppList, pm!!,  appDb)
+        val adapter = FavAdapter(allAppList, requireContext(),pm!!,  appDb)
         recyclerview.adapter = adapter
         return inflate
     }
@@ -75,7 +79,7 @@ class EditfavFragment : Fragment() {
         }
         val recyclerview: RecyclerView = inflate.findViewById(R.id.recyclerviewfav)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        val adapter = FavAdapter(allAppList, pm!!,appDb)
+        val adapter = FavAdapter(allAppList, requireContext(),pm!!,appDb)
         recyclerview.adapter = adapter
     }
 }

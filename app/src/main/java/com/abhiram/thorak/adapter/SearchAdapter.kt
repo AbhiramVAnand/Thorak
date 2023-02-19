@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import android.widget.*
 import androidx.fragment.app.FragmentTransaction
 import com.abhiram.thorak.AppList
 import com.abhiram.thorak.R
+import com.abhiram.thorak.helpers.SharedPreferenceHelper
 
 class SearchAdapter(
     private val mContext: Context,
@@ -26,15 +28,21 @@ class SearchAdapter(
     private var suggestions = ArrayList<AppList>()
     private lateinit var pm : PackageManager
     private lateinit var fragT : FragmentTransaction
+    private var sharedPreferenceHelper = SharedPreferenceHelper()
 
     @SuppressLint("ResourceAsColor")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        sharedPreferenceHelper.SharedPreferenceHelperInit(context)
+        val font : Typeface = sharedPreferenceHelper.getFont(context)
+        val height = sharedPreferenceHelper.getIconHeight()
+        val width = sharedPreferenceHelper.getIconWidth()
         var v: View? = convertView
         if (v == null) {
             val vi = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             v = vi.inflate(viewResourceId, null)
         }
-        v?.setBackgroundColor(R.color.offwhite)
+        v?.setBackgroundColor(R.color.darkDim)
+        v?.background = context.getDrawable(R.drawable.searchitembg)
         pm = context.packageManager
         fragT = frag
         try {
@@ -44,6 +52,11 @@ class SearchAdapter(
                 val appIcon : ImageView? = v?.findViewById(R.id.testicon)
                 appIcon?.setImageDrawable(pm.getApplicationIcon(app.pkgName))
                 appName?.text = app.appName
+                appName?.setTextSize(sharedPreferenceHelper.getFontSize())
+                appName?.typeface = font
+                appIcon?.layoutParams!!.height =height
+                appIcon?.layoutParams!!.width = width
+
             }
             v?.setOnClickListener {
                 val launchIntent : Intent = pm.getLaunchIntentForPackage(app!!.pkgName)!!
@@ -52,9 +65,11 @@ class SearchAdapter(
             autoCompleteTextView.setOnEditorActionListener { textView, action, event ->
                 var handled = false
                 if (action == EditorInfo.IME_ACTION_DONE) {
-                    val launchIntent : Intent = pm.getLaunchIntentForPackage(app!!.pkgName)!!
-                    context.startActivity(launchIntent)
-                    handled = true
+                    if(suggestions.size!=0){
+                        val launchIntent : Intent = pm.getLaunchIntentForPackage(suggestions[0].pkgName)!!
+                        context.startActivity(launchIntent)
+                        handled = true
+                    }
                 }
                 handled
             }

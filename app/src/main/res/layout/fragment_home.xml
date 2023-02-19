@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@android:color/transparent"
     tools:context=".fragments.HomeFragment"
     android:id="@+id/homeScreen">
@@ -12,26 +13,23 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans"
-        android:format12Hour="hh:mm"
-        android:text="0:00"
+        android:layout_marginTop="42sp"
+        android:layout_marginLeft="30sp"
+        android:fontFamily="@font/k2d"
+        android:format12Hour="hh\nmm"
+        android:lineHeight="5sp"
+        android:text="00:00"
         android:textColor="@color/white"
-        android:textSize="48sp"
         android:shadowColor = "@color/darkBl"
         android:shadowDx = "2"
         android:shadowDy = "2"
-        android:shadowRadius = "1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.060" />
+        android:shadowRadius = "1"/>
 
     <TextClock
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="31sp"
         android:textColor="@color/white"
         android:format12Hour="dd MMM yy"
         android:textSize="16sp"
@@ -39,13 +37,7 @@
         android:shadowColor = "@color/darkBl"
         android:shadowDx = "2"
         android:shadowDy = "2"
-        android:shadowRadius = "1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.160" />
+        android:shadowRadius = "1" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

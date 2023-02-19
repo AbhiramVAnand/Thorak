@@ -21,6 +21,9 @@ interface AppDao {
     @Query("UPDATE app_list SET is_fav=1 WHERE appName LIKE :name")
     suspend fun setFav(name : String)
 
+    @Query("UPDATE app_list SET hide=1 WHERE appName LIKE :name")
+    suspend fun hide(name : String)
+
     @Query("UPDATE app_list SET is_fav=0 WHERE appName LIKE :name")
     suspend fun removeFav(name : String)
 
