@@ -1,7 +1,5 @@
 package com.abhiram.thorak.fragments.startup
 
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -69,7 +67,7 @@ class AddFavFragment : Fragment() {
 
         recyclerview.adapter = adapter
         done.setOnClickListener {
-            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, DirectionsFragment()).commit()
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, CustomizeFragment()).addToBackStack("startup").commit()
         }
         return inflate
     }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.util.Log
+import java.lang.reflect.Type
 
 
 // To those who are reading this
@@ -19,6 +20,10 @@ class SharedPreferenceHelper() {
     private val  DATESIZE : String = "datesize"
     private val FONT : String = "fontname"
     private val CLOCKFONT : String = "clockfont"
+    private val ICONRADIUS : String = "iconradius"
+    private val FONTWEIGHT : String = "fontweight"
+    private val FSEEK : String = "fseekvalue"
+    private val ISEEK :String = "iseekvalue"
 
     fun SharedPreferenceHelperInit(context: Context) {
         this.sharedPreferences =
@@ -50,17 +55,34 @@ class SharedPreferenceHelper() {
         sharedPreferences.edit()!!.putString(CLOCKFONT,font).apply()
     }
 
+    fun setIconRadius(size: Float){
+        sharedPreferences.edit()!!.putFloat(ICONRADIUS,size).apply()
+    }
+
+    fun setFontWeight(weight:Int){
+        sharedPreferences.edit().putInt(FONTWEIGHT,weight).apply()
+    }
+
+    fun setFseek(progess : Int){
+        sharedPreferences.edit().putInt(FSEEK,progess).apply()
+    }
+
+    fun setIseek(progess : Int){
+        sharedPreferences.edit().putInt(ISEEK,progess).apply()
+    }
+
     fun getIconHeight():Int {
-        return sharedPreferences.getInt(ICONHEIGHT,100)!!
+        return sharedPreferences.getInt(ICONHEIGHT,100)
     }
 
     fun getIconWidth() : Int{
-        return sharedPreferences.getInt(ICONWIDTH,100)!!
+        return sharedPreferences.getInt(ICONWIDTH,100)
     }
 
     fun getFontSize() : Float{
-        return sharedPreferences.getFloat(FONTSIZE,16F)!!
+        return sharedPreferences.getFloat(FONTSIZE, 16F)
     }
+
     fun getClockSize() : Float {
         return sharedPreferences.getFloat(CLOCKSIZE,42F)
     }
@@ -70,12 +92,28 @@ class SharedPreferenceHelper() {
     }
 
     fun getFont(context: Context) : Typeface{
-        val font = sharedPreferences.getString(FONT,"NotoSans-Regular")
+        val font = sharedPreferences.getString(FONT,"K2d").toString()
         return Typeface.createFromAsset(context?.assets, "Fonts/$font.ttf")
     }
 
+    fun getFontName():String{
+        return sharedPreferences.getString(FONT,"K2d").toString()
+    }
+
     fun getClockFont(context: Context) : Typeface{
-        val font = sharedPreferences.getString(CLOCKFONT,"NotoSans-Regular")
+        val font = sharedPreferences.getString(CLOCKFONT,"K2d")
         return Typeface.createFromAsset(context?.assets, "Fonts/$font.ttf")
+    }
+
+    fun getFontWeight():Int{
+        return sharedPreferences.getInt(FONTWEIGHT,600)
+    }
+
+    fun getFseek() : Int{
+        return sharedPreferences.getInt(FSEEK,40)
+    }
+
+    fun getIseek() : Int{
+        return sharedPreferences.getInt(ISEEK,56)
     }
 }

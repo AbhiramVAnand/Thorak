@@ -12,23 +12,12 @@
         android:id="@+id/check"
         android:layout_width="15sp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="10sp"/>
     <ImageView
         android:id="@+id/icon"
         android:layout_width="30sp"
         android:layout_height="30sp"
-        android:layout_marginLeft="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
+        android:layout_marginLeft="15sp"/>
 
     <TextView
         android:id="@+id/name"
@@ -40,12 +29,7 @@
         android:shadowDx = "-2"
         android:shadowDy = "-2"
         android:shadowRadius = "1"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="15sp"/>
 
 
 </LinearLayout>

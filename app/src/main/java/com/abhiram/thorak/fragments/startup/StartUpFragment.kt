@@ -54,7 +54,7 @@ class StartUpFragment : Fragment() {
         }
         Log.e("App Count",j.toString() )
         start.setOnClickListener {
-            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, AddFavFragment()).commit()
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.frag_view, AddFavFragment()).addToBackStack("startup").commit()
         }
         return inflate
     }

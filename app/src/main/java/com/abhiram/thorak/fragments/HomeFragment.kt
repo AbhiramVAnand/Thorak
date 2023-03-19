@@ -48,12 +48,18 @@ class HomeFragment : Fragment() , View.OnTouchListener, GestureDetector.OnGestur
         time.textSize = sharedPreferenceHelper.getClockSize()
         date.textSize = sharedPreferenceHelper.getDateSize()
         fragmentTransaction = parentFragmentManager.beginTransaction()
+        parentFragmentManager.popBackStack("startup",FragmentManager.POP_BACK_STACK_INCLUSIVE)
         parentFragmentManager.popBackStack("path",FragmentManager.POP_BACK_STACK_INCLUSIVE)
         if (homeScreen != null) {
             homeScreen.setOnTouchListener(this)
         }
         mgesturedetector = GestureDetector(this)
         time.typeface = font
+
+
+        time.format12Hour = "hh:mm"
+
+
         date.typeface = font
         time.setOnClickListener {
             val openClockIntent = Intent(AlarmClock.ACTION_SHOW_ALARMS)

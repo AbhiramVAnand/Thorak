@@ -1,10 +1,11 @@
-package com.abhiram.thorak
+package com.abhiram.thorak.helpers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.fragment.app.FragmentManager
+import com.abhiram.thorak.AppDatabase
+import com.abhiram.thorak.AppList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
