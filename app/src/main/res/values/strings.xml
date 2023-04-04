@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">Thorak</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="version">v0.1.1-beta</string>
+    <string-array name="fonts">
+        <item>Poppins</item>
+        <item>Dohyeon</item>
+        <item>Josefin Sans</item>
+        <item>Jura</item>
+        <item>Papyrus</item>
+        <item>K2d</item>
+        <item>Lato</item>
+        <item>NotoSans</item>
+        <item>Phudu</item>
+        <item>SquadaOne</item>
+    </string-array>
+
+    <string name="appname">Play Store</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

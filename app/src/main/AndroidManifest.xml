@@ -7,6 +7,7 @@
         tools:ignore="QueryAllPackagesPermission" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
     <application
         android:allowBackup="true"
@@ -29,7 +30,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <receiver android:name="com.abhiram.thorak.PackageChangeReceiver" android:exported="true">
+        <receiver android:name="com.abhiram.thorak.helpers.PackageChangeReceiver" android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED"/>
                 <action android:name="android.intent.action.PACKAGE_CHANGED" />

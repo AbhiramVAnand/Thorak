@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fontNameCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10sp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/listitemF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/offwhite"
+        android:shadowColor = "@color/darkBl"
+        android:shadowDx = "-2"
+        android:shadowDy = "-2"
+        android:shadowRadius = "1"/>
+</LinearLayout>
