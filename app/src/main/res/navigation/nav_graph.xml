@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startUpFragment">
+    <fragment
+        android:id="@+id/startUpFragment"
+        android:name="com.abhiram.thorak.fragments.startup.StartUpFragment"
+        android:label="fragment_start_up"
+        tools:layout="@layout/fragment_start_up" >
+        <action
+            android:id="@+id/action_startUpFragment_to_customFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/customFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customFragment"
+        android:name="com.abhiram.thorak.fragments.startup.CustomFragment"
+        android:label="fragment_custom"
+        tools:layout="@layout/fragment_custom" >
+        <action
+            android:id="@+id/action_customFragment_to_addFavFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/addFavFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFavFragment"
+        android:name="com.abhiram.thorak.AddFavFragment"
+        android:label="fragment_add_fav2"
+        tools:layout="@layout/fragment_add_fav" >
+        <action
+            android:id="@+id/action_addFavFragment_to_finishTourFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/finishTourFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishTourFragment"
+        android:name="com.abhiram.thorak.FinishTourFragment"
+        android:label="fragment_finish_tour"
+        tools:layout="@layout/fragment_finish_tour" >
+        <action
+            android:id="@+id/action_finishTourFragment_to_homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.abhiram.thorak.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+</navigation>

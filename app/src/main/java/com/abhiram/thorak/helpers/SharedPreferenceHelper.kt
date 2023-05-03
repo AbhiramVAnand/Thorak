@@ -80,7 +80,7 @@ class SharedPreferenceHelper() {
     }
 
     fun getFontSize() : Float{
-        return sharedPreferences.getFloat(FONTSIZE, 16F)
+        return sharedPreferences.getFloat(FONTSIZE, 14F)
     }
 
     fun getClockSize() : Float {
@@ -110,7 +110,7 @@ class SharedPreferenceHelper() {
     }
 
     fun getFseek() : Int{
-        return sharedPreferences.getInt(FSEEK,40)
+        return sharedPreferences.getInt(FSEEK,25)
     }
 
     fun getIseek() : Int{

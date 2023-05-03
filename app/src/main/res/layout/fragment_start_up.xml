@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    android:background="@color/darkBl"
-    tools:context=".fragments.startup.StartUpFragment"
-    android:orientation="vertical">
-
+    android:background="@color/darkDim"
+    android:orientation="vertical"
+    tools:context=".fragments.startup.StartUpFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/imageView"
         android:layout_width="160sp"
         android:layout_height="160sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:lottie_rawRes="@raw/lottie"
-        app:lottie_autoPlay="true"
         app:lottie_loop="false"
+        app:lottie_autoPlay="true"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -31,8 +29,8 @@
         android:textSize="58sp"
         android:textColor="@color/white"
         android:shadowColor = "@color/darkBl"
-        android:shadowDx = "-2"
-        android:shadowDy = "-2"
+        android:shadowDx = "2"
+        android:shadowDy = "2"
         android:shadowRadius = "1" />
 
     <TextView
@@ -42,17 +40,17 @@
         android:text="@string/version"
         android:textColor="@color/white"
         android:shadowColor = "@color/darkBl"
-        android:shadowDx = "-2"
-        android:shadowDy = "-2"
+        android:shadowDx = "2"
+        android:shadowDy = "2"
         android:shadowRadius = "1"
         android:textSize="16sp" />
 
 
     <ImageButton
         android:id="@+id/start"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="120sp"
-        android:background="@drawable/arroww" />
+        android:background="@drawable/start_arrow" />
 
 </LinearLayout>
