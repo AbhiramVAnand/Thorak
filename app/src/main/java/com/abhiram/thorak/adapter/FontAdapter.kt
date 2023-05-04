@@ -38,8 +38,7 @@ class FontAdapter(
         holder.fontName.textSize = sharedPreferenceHelper.getFontSize()
         holder.fontNameCard.setOnClickListener{
             sharedPreferenceHelper.setAppFont(fonts[position])
-            Toast.makeText(context,fonts[position]+" set as app font", Toast.LENGTH_SHORT).show()
-            fragT.popBackStack()
+            Toast.makeText(context,fonts[position]+" selected", Toast.LENGTH_SHORT).show()
         }
     }
 

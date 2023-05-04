@@ -6,8 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.abhiram.thorak.fragments.HomeFragment
-import com.abhiram.thorak.fragments.startup.StartUpFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,14 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         supportActionBar?.hide()
-        if (isFirstRun()){
-            window.navigationBarColor = resources.getColor(R.color.darkBl)
-            window.statusBarColor = resources.getColor(R.color.darkBl)
-            supportFragmentManager.beginTransaction().replace(R.id.frag_view, StartUpFragment()).commit()
-        }else{
-            supportFragmentManager.beginTransaction().replace(R.id.frag_view,HomeFragment()).commit()
-        }
-
     }
     fun isFirstRun(): Boolean{
         val pref = getSharedPreferences("lists",Context.MODE_PRIVATE)

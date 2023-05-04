@@ -11,4 +11,8 @@
     <color name="darkBl">#88000000</color>
     <color name="offwhite">#FFFAF9F6</color>
     <color name="gray">#FF222831</color>
+
+    <color name="nubBlu">#FF1B2A3A</color>
+    <color name="nubYel">#FFCEC9AC</color>
+    <color name="seekbar">#FF7C7962</color>
 </resources>
