@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Thorak</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="version">v0.1.1-beta</string>
+    <string name="version">v1.0.0-beta</string>
     <string-array name="fonts">
         <item>Poppins</item>
         <item>Dohyeon</item>

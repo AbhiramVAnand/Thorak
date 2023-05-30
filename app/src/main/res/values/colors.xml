@@ -6,8 +6,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="darkDim">#66000000</color>
-    <color name="transparent">#00ffffff</color>
     <color name="darkBl">#88000000</color>
     <color name="offwhite">#FFFAF9F6</color>
     <color name="gray">#FF222831</color>
@@ -15,4 +13,7 @@
     <color name="nubBlu">#FF1B2A3A</color>
     <color name="nubYel">#FFCEC9AC</color>
     <color name="seekbar">#FF7C7962</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="darkDim">#66000000</color>
 </resources>

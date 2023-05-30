@@ -2,22 +2,55 @@
 package com.abhiram.thorak
 
 
-import android.content.Context
 import android.os.Bundle
-import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.Composable
+import androidx.core.view.WindowCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.abhiram.thorak.helpers.PrefernceRepository
+import com.abhiram.thorak.ui.screens.Home
+import com.abhiram.thorak.ui.screens.Route
+import com.abhiram.thorak.ui.screens.tour.Customize
+import com.abhiram.thorak.ui.screens.tour.StartUp
+import com.abhiram.thorak.ui.theme.ThorakTheme
 
-class MainActivity : AppCompatActivity() {
+@ExperimentalMaterial3Api
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        supportActionBar?.hide()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val prefernceRepository = PrefernceRepository(this)
+        val isFirst = prefernceRepository.isFirstRun()
+        setContent {
+            ThorakTheme {
+                Navigation(isFirst = isFirst)
+            }
+        }
     }
-    fun isFirstRun(): Boolean{
-        val pref = getSharedPreferences("lists",Context.MODE_PRIVATE)
-        val isfirstrun : Boolean = pref.getBoolean("isFirstRun",true)
-        return isfirstrun
+}
+
+@Composable
+fun Navigation(isFirst : Boolean) {
+    val navController = rememberNavController()
+    if(isFirst){
+        NavHost(navController = navController, startDestination = Route.StartUpScreen.route){
+            composable(route = Route.StartUpScreen.route){
+                StartUp(navController = navController)
+            }
+            composable(route=Route.Customize.route){
+                Customize()
+            }
+        }
+    }else{
+        NavHost(navController = navController, startDestination = Route.HomeScreen.route){
+            composable(route = Route.HomeScreen.route){
+                Home(navController = navController)
+            }
+        }
     }
 
 }
