@@ -1,6 +1,8 @@
 package com.abhiram.thorak
 
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.room.*
+import com.abhiram.thorak.Database.ShapeIcon
 
 
 @Dao
@@ -38,4 +40,14 @@ interface AppDao {
 
     @Query("DELETE FROM app_list")
     suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addShape(shape: ShapeIcon)
+//
+//    @Query("SELECT shape FROM icon_shape WHERE id LIKE 1")
+//    suspend fun getShape() : CornerBasedShape
+//
+//    @Query("UPDATE icon_shape SET shape=:shape WHERE id LIKE 1")
+//    suspend fun setShape(shape: CornerBasedShape)
+
 }
