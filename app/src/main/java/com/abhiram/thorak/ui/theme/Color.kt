@@ -1,5 +1,6 @@
 package com.abhiram.thorak.ui.theme
 
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.ui.graphics.Color
 
@@ -18,3 +19,4 @@ val NubLY = Color(0xFF7C7962)
 val Transparent = Color(0x00FFFFFF)
 val DarkDim = Color(0x66000000)
 val DarkLight = Color(0x88000000)
+

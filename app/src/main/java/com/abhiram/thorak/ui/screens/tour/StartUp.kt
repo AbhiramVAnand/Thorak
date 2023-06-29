@@ -52,6 +52,7 @@ fun Greeting(navController: NavController, modifier: Modifier = Modifier) {
     val startUpViewModel : StartupViewModel = StartupViewModel(LocalContext.current)
     startUpViewModel.getApps()
 
+    Spacer(modifier = Modifier.height(20.dp))
     val composition by rememberLottieComposition(
         LottieCompositionSpec
             .RawRes(R.raw.logo)
@@ -79,7 +80,7 @@ fun Greeting(navController: NavController, modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(250.dp))
+        Spacer(modifier = Modifier.height(300.dp))
         LottieAnimation(
             composition,
             progress,
@@ -108,7 +109,7 @@ fun Greeting(navController: NavController, modifier: Modifier = Modifier) {
         IconButton(onClick = {
             navController.navigate(Route.Customize.route)
         },Modifier.size(200.dp)) {
-            Image(painter = painterResource(id = R.drawable.start_arrow),
+            Image(painter = painterResource(id = R.drawable.start),
                 contentDescription = "Start")
         }
     }

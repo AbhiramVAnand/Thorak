@@ -4,12 +4,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
@@ -38,19 +41,18 @@ import com.abhiram.thorak.ui.theme.Typography
 
 @Composable
 @ExperimentalMaterial3Api
-fun FontsBottomSheet() {
+fun FontsBottomSheet(){
     Box(
         modifier = Modifier
             .fillMaxWidth(1F)
+            .clip(BottomSheetsShapes.medium)
+            .background(NubBlu)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth(1F)
-                .clip(BottomSheetsShapes.medium)
-                .background(NubBlu)
-                .padding(horizontal = 20.dp)
-                .padding(top = 10.dp)
+                .padding(horizontal = 24.dp)
         ) {
             Text(text = "Choose",
                 color = NubYel,
@@ -58,111 +60,132 @@ fun FontsBottomSheet() {
                 fontWeight = FontWeight.SemiBold,
                 style = Typography.headlineMedium)
 
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Column(modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(36.dp)
-                .clip(ThorakShapes.large)
-                .background(NubYel),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-                ){
-                Text(text = "Poppins",
-                    color = NubBlu,
-                    style = Typography.bodyLarge,
-                    fontFamily = Poppins,
-                    fontWeight = FontWeight.Normal,
-                    textAlign = TextAlign.Center)
-            }
-
-
-
-            Spacer(modifier = Modifier.height(10.dp))
-            Column(modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(36.dp)
-                .clip(ThorakShapes.large)
-                .background(NubYel),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Josefin Sans",
-                    color = NubBlu,
-                    style = Typography.bodyLarge,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    fontFamily = JosefinSans,
-                    modifier = Modifier
-                        .fillMaxWidth(1F)
-                        .clip(ThorakShapes.large)
-                        .background(NubYel)
-                        .height(36.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Column(modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(36.dp)
-                .clip(ThorakShapes.large)
-                .background(NubYel),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Jura",
-                    color = NubBlu,
-                    style = Typography.bodyLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.Center,
-                    fontFamily = Jura
-                )
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Column(modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(36.dp)
-                .clip(ThorakShapes.large)
-                .background(NubYel),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Lato",
-                    color = NubBlu,
-                    style = Typography.bodyLarge,
-                    fontWeight = FontWeight.Normal,
-                    textAlign = TextAlign.Center,
-                    fontFamily = Lato
-                )
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Column(modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(36.dp)
-                .clip(ThorakShapes.large)
-                .background(NubYel),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Squada One",
-                    color = NubBlu,
-                    style = Typography.bodyLarge,
-                    fontWeight = FontWeight.Normal,
-                    fontFamily = SquadaOne,
-                    textAlign = TextAlign.Center
-                )
-            }
-
             Spacer(modifier = Modifier.height(14.dp))
+
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth(1F)
+                    .height(42.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = NubYel, contentColor = NubBlu),
+                shape = ThorakShapes.large
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                ){
+                    Text(text = "Poppins",
+                        color = NubBlu,
+                        style = Typography.bodyLarge,
+                        fontFamily = Poppins,
+                        fontWeight = FontWeight.Normal,
+                        textAlign = TextAlign.Center)
+                }
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth(1F)
+                    .height(42.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = NubYel, contentColor = NubBlu),
+                shape = ThorakShapes.large
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Josefin Sans",
+                        color = NubBlu,
+                        style = Typography.bodyLarge,
+                        fontWeight = FontWeight.Normal,
+                        textAlign = TextAlign.Center,
+                        fontFamily = JosefinSans,
+                        modifier = Modifier
+                            .fillMaxWidth(1F)
+                            .clip(ThorakShapes.large)
+                            .background(NubYel)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth(1F)
+                    .height(42.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = NubYel, contentColor = NubBlu),
+                shape = ThorakShapes.large
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Jura",
+                        color = NubBlu,
+                        style = Typography.bodyLarge,
+                        fontWeight = FontWeight.Normal,
+                        textAlign = TextAlign.Center,
+                        fontFamily = Jura
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth(1F)
+                    .height(42.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = NubYel, contentColor = NubBlu),
+                shape = ThorakShapes.large
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Lato",
+                        color = NubBlu,
+                        style = Typography.bodyLarge,
+                        fontWeight = FontWeight.Normal,
+                        textAlign = TextAlign.Center,
+                        fontFamily = Lato
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth(1F)
+                    .height(42.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = NubYel, contentColor = NubBlu),
+                shape = ThorakShapes.large
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Squada One",
+                        color = NubBlu,
+                        style = Typography.bodyLarge,
+                        fontWeight = FontWeight.Normal,
+                        fontFamily = SquadaOne,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
 
             Row(
                 modifier = Modifier
@@ -170,24 +193,39 @@ fun FontsBottomSheet() {
                 horizontalArrangement = Arrangement.Center
             ) {
 
-                Text(text = "Cancel",
-                    color = NubYel,
-                    fontFamily = Poppins,
-                    fontWeight = FontWeight.Normal,
-                    style = Typography.bodySmall)
+                Button(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(containerColor = NubBlu, contentColor = NubYel),
+                    shape = ThorakShapes.large
+                ) {
+                    Text(
+                        text = "Cancel",
+                        color = NubYel,
+                        fontFamily = Poppins,
+                        fontWeight = FontWeight.Normal,
+                        style = Typography.bodyLarge
+                    )
+                }
 
-                Spacer(modifier = Modifier.fillMaxWidth(0.5F))
+                Spacer(modifier = Modifier.fillMaxWidth(0.3F))
 
-                Text(text = "Apply",
-                    color = NubYel,
-                    fontFamily = Poppins,
-                    fontWeight = FontWeight.Normal,
-                    style = Typography.bodySmall)
-
+                Button(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(containerColor = NubBlu, contentColor = NubYel),
+                    shape = ThorakShapes.large
+                ) {
+                    Text(
+                        text = "Apply",
+                        color = NubYel,
+                        fontFamily = Poppins,
+                        fontWeight = FontWeight.Normal,
+                        style = Typography.bodyLarge
+                    )
+                }
             }
-
         }
     }
+    Spacer(modifier = Modifier.height(24.dp))
 }
 
 

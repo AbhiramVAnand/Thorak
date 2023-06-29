@@ -19,5 +19,5 @@ val IconShapes = Shapes(
 )
 
 val BottomSheetsShapes = Shapes(
-    medium = RoundedCornerShape(topStart = 24.dp, topEnd = 224.dp, bottomEnd = 0.dp, bottomStart = 0.dp)
+    medium = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp, bottomEnd = 0.dp, bottomStart = 0.dp)
 )
