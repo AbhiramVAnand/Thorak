@@ -3,6 +3,7 @@ package com.abhiram.thorak.helpers
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Typeface
+import android.graphics.fonts.FontFamily
 import androidx.compose.foundation.shape.CornerBasedShape
 import com.abhiram.thorak.AppDatabase
 import com.abhiram.thorak.Database.ShapeIcon
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class PrefernceRepository(context : Context) {
     val context = context
-    private var sharedPreferences: SharedPreferences = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
+    private var sharedPreferences: SharedPreferences
     private val ISFIRSTRUN : String = "isFirstRun"
     private val FONTSIZE : String = "fontsize"
     private val CLOCKSIZE : String = "clocksize"
@@ -30,6 +31,9 @@ class PrefernceRepository(context : Context) {
     private val ISEEK :String = "iseekvalue"
     private val ISHAPE : String = "ishape"
 
+    init{
+        sharedPreferences = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
+    }
 //    fun addShape(){
 //        var appDb : AppDatabase = AppDatabase.getDatabse(context)
 //        val shape : ShapeIcon = ShapeIcon(1, IconShapes.small)
@@ -111,9 +115,9 @@ class PrefernceRepository(context : Context) {
         return sharedPreferences.getFloat(CLOCKSIZE,42F)
     }
 
-    fun getFont(context: Context) : Typeface{
-        val font = sharedPreferences.getString(FONT,"K2d").toString()
-        return Typeface.createFromAsset(context?.assets, "Fonts/$font.ttf")
+    fun getFont() : String{
+        val font = sharedPreferences.getString(FONT,"Poppins").toString()
+        return font
     }
 
     fun getFontName():String{

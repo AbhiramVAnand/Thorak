@@ -1,19 +1,33 @@
 import android.content.Context
+import android.graphics.fonts.FontFamily
 import android.support.v4.os.IResultReceiver._Parcel
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.abhiram.thorak.helpers.PrefernceRepository
+import com.abhiram.thorak.helpers.RoomRepository
 import com.abhiram.thorak.ui.theme.IconShapes
+import com.abhiram.thorak.ui.theme.JosefinSans
+import com.abhiram.thorak.ui.theme.Jura
+import com.abhiram.thorak.ui.theme.Lato
+import com.abhiram.thorak.ui.theme.Papyrus
+import com.abhiram.thorak.ui.theme.Phudu
+import com.abhiram.thorak.ui.theme.Poppins
+import com.abhiram.thorak.ui.theme.SquadaOne
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class CustomizationViewModel(context: Context) : ViewModel(){
-    val prefernceRepository = PrefernceRepository(context)
-    var iseektemp : Float = prefernceRepository.getIseek()
-    var iconChoice : CornerBasedShape = IconShapes.small
+    var prefernceRepository : PrefernceRepository
+    var roomRepository: RoomRepository
+    init {
+        prefernceRepository = PrefernceRepository(context)
+        roomRepository = RoomRepository(context)
+    }
 
+//    Icon Size
+    var iseektemp : Float = prefernceRepository.getIseek()
     private val _iseek : MutableLiveData<Float> = MutableLiveData(iseektemp)
     val iseek : LiveData<Float> = _iseek
     fun onISlide(newIseek : Float){
@@ -21,20 +35,22 @@ class CustomizationViewModel(context: Context) : ViewModel(){
         prefernceRepository.setIseek(newIseek)
     }
 
-//    private val _ishape : MutableLiveData<CornerBasedShape> = MutableLiveData(iconChoice)
-//    val ishape : LiveData<CornerBasedShape> = _ishape
-//    fun onShapeChange(newShape : CornerBasedShape){
-//        _ishape.value = newShape
-//        iconChoice = newShape
-////        prefernceRepository.setShape(shape = newShape)
-//    }
 
+//    Icon Shape
     private val _iconShape = MutableStateFlow(IconShapes.small)
-
     val iconShape = _iconShape.asStateFlow()
-
-    fun changeShape(shape : CornerBasedShape){
+    fun changeShape(shape : CornerBasedShape, choice : Int){
         _iconShape.value = shape
+        roomRepository.addShape(choice)
+    }
+
+//    Font Name
+    var Font = prefernceRepository.getFont()
+    private val _font = MutableStateFlow(Font)
+    val font = _font.asStateFlow()
+
+    fun changeFont(font: String){
+        
     }
 
 }

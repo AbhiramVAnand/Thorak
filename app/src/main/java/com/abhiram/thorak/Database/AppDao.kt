@@ -1,7 +1,6 @@
 package com.abhiram.thorak
-
-import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.room.*
+import com.abhiram.thorak.AppList
 import com.abhiram.thorak.Database.ShapeIcon
 
 
@@ -35,7 +34,7 @@ interface AppDao {
     @Delete
     suspend fun remove(app:AppList)
 
-    @Query("DELETE FROM app_list WHERE pkg_name LIKE :pkg")
+    @Query("DELETE FROM app_list WHERE pkgName LIKE :pkg")
     suspend fun uninstalled(pkg:String)
 
     @Query("DELETE FROM app_list")

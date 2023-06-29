@@ -16,10 +16,10 @@ val Poppins = FontFamily(
     Font(R.font.poppinsmed,FontWeight.Medium)
 )
 val JosefinSans = FontFamily(
-    Font(R.font.josefinsans,FontWeight.Normal)
+    Font(R.font.josefinsans,FontWeight.Bold)
 )
 val Jura = FontFamily(
-    Font(R.font.jura,FontWeight.Normal)
+    Font(R.font.jura,FontWeight.SemiBold)
 )
 val Lato = FontFamily(
     Font(R.font.lato,FontWeight.Normal)

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.abhiram.thorak.R
+import com.abhiram.thorak.StartupViewModel
 import com.abhiram.thorak.helpers.PrefernceRepository
 import com.abhiram.thorak.ui.screens.Route
 import com.abhiram.thorak.ui.theme.DarkDim
@@ -48,6 +49,9 @@ fun StartUp(navController: NavController) {
 
 @Composable
 fun Greeting(navController: NavController, modifier: Modifier = Modifier) {
+    val startUpViewModel : StartupViewModel = StartupViewModel(LocalContext.current)
+    startUpViewModel.getApps()
+
     val composition by rememberLottieComposition(
         LottieCompositionSpec
             .RawRes(R.raw.logo)
