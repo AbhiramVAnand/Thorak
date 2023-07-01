@@ -1,7 +1,9 @@
 import android.content.Context
 import android.graphics.fonts.FontFamily
 import android.support.v4.os.IResultReceiver._Parcel
+import android.widget.Toast
 import androidx.compose.foundation.shape.CornerBasedShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -50,7 +52,17 @@ class CustomizationViewModel(context: Context) : ViewModel(){
     val font = _font.asStateFlow()
 
     fun changeFont(font: String){
-        
+        _font.value = font
+        prefernceRepository.setAppFont(font)
     }
 
+//    Font slider
+    var fSlider = prefernceRepository.getFontSize()
+    private val _fSlider = MutableStateFlow(fSlider)
+    val fPos = _fSlider.asStateFlow()
+
+    fun onFSlide(pos : Float){
+        _fSlider.value = pos
+        prefernceRepository.setFontSize(pos)
+    }
 }

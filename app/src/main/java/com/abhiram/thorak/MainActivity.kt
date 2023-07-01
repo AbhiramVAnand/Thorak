@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.abhiram.thorak.helpers.PrefernceRepository
 import com.abhiram.thorak.ui.screens.Home
 import com.abhiram.thorak.ui.screens.Route
+import com.abhiram.thorak.ui.screens.tour.AddFavs
 import com.abhiram.thorak.ui.screens.tour.Customize
 import com.abhiram.thorak.ui.screens.tour.StartUp
 import com.abhiram.thorak.ui.theme.ThorakTheme
@@ -42,7 +43,10 @@ fun Navigation(isFirst : Boolean) {
                 StartUp(navController = navController)
             }
             composable(route=Route.Customize.route){
-                Customize()
+                Customize(navController =  navController)
+            }
+            composable(route = Route.AddFav.route){
+                AddFavs(navController = navController)
             }
         }
     }else{

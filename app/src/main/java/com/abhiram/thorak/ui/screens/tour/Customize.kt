@@ -2,8 +2,6 @@ package com.abhiram.thorak.ui.screens.tour
 
 
 import CustomizationViewModel
-import android.annotation.SuppressLint
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,21 +16,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.BottomSheetScaffold
-import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.SheetState
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderColors
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -40,7 +32,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,9 +41,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.abhiram.thorak.R
 import com.abhiram.thorak.ui.screens.Route
 import com.abhiram.thorak.ui.screens.bottomsheets.FontsBottomSheet
@@ -64,8 +57,6 @@ import com.abhiram.thorak.ui.theme.Lato
 import com.abhiram.thorak.ui.theme.NubBlu
 import com.abhiram.thorak.ui.theme.NubLY
 import com.abhiram.thorak.ui.theme.NubYel
-import com.abhiram.thorak.ui.theme.Papyrus
-import com.abhiram.thorak.ui.theme.Phudu
 import com.abhiram.thorak.ui.theme.Poppins
 import com.abhiram.thorak.ui.theme.SquadaOne
 import com.abhiram.thorak.ui.theme.ThorakShapes
@@ -74,11 +65,10 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import kotlinx.coroutines.launch
 
 
 @Composable
-fun Customize() {
+fun Customize(navController: NavHostController) {
     Column {
         Header()
         IconsFeel()
@@ -89,7 +79,7 @@ fun Customize() {
         .fillMaxWidth(1F)
     ){
         IconButton(onClick = {
-
+            navController.navigate(Route.AddFav.route)
         },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
@@ -108,6 +98,8 @@ fun IconsFeel() {
     val customViewModel = CustomizationViewModel(LocalContext.current)
     val iSliderPos : Float by customViewModel.iseek.observeAsState(customViewModel.iseektemp)
     val height : Float by customViewModel.iseek.observeAsState(customViewModel.iseektemp)
+    val fPos : Float by customViewModel.fPos.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxWidth(1F)
@@ -125,7 +117,7 @@ fun IconsFeel() {
                 color = NubYel,
                 fontFamily = Poppins,
                 fontWeight = FontWeight.Medium,
-                style = Typography.headlineMedium,
+                style = Typography.headlineSmall,
                 modifier = Modifier.padding(top = 8.dp, start = 14.dp)
             )
             Box(
@@ -147,6 +139,7 @@ fun IconsFeel() {
                         fontWeight = FontWeight.Medium,
                         style = Typography.bodyMedium,
                         modifier = Modifier.padding(top = 8.dp, start = 14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
                     AppPreview(height,customViewModel)
                 }
             }
@@ -165,15 +158,25 @@ fun IconsFeel() {
                 fontWeight = FontWeight.Medium,
                 style = Typography.bodyMedium,
                 modifier = Modifier.padding(top = 8.dp, start = 28.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             IconShapeSelect(CustomViewModel = customViewModel)
             Text(
                 text = "Font",
                 color = NubYel,
                 fontFamily = Poppins,
                 fontWeight = FontWeight.Medium,
-                style = Typography.headlineMedium,
+                style = Typography.headlineSmall,
                 modifier = Modifier.padding(top = 8.dp, start = 14.dp))
-            Font(customViewModel)
+            FontBottomSheet(customViewModel)
+            Text(
+                text = "Font Size",
+                color = NubYel,
+                fontFamily = Poppins,
+                fontWeight = FontWeight.Medium,
+                style = Typography.bodyMedium,
+                modifier = Modifier.padding(top = 8.dp, start = 28.dp))
+            FontSliderView(sliderPosition = fPos, onValChange = { customViewModel.onFSlide(it)})
+            Spacer(modifier = Modifier.height(12.dp))
         }
     }
 }
@@ -206,6 +209,7 @@ fun sliderColors() : SliderColors = SliderDefaults.colors(
 fun AppPreview(height: Float, CustomViewModel : CustomizationViewModel) {
     val shape by CustomViewModel.iconShape.collectAsState()
     val font : String by CustomViewModel.font.collectAsState()
+    val fontSize : Float by CustomViewModel.fPos.collectAsState()
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
@@ -226,7 +230,9 @@ fun AppPreview(height: Float, CustomViewModel : CustomizationViewModel) {
             Text(
                 text = "Google",
                 color = NubBlu,
-                fontFamily = getFont(font)
+                fontFamily = getFont(font),
+                style = getFontSize(fontSize),
+                modifier = Modifier.padding(5.dp)
             )
         }
         Column(
@@ -242,7 +248,9 @@ fun AppPreview(height: Float, CustomViewModel : CustomizationViewModel) {
             Text(
                 text = "Thorak",
                 color = NubBlu,
-                fontFamily = getFont(font)
+                fontFamily = getFont(font),
+                style = getFontSize(fontSize),
+                modifier = Modifier.padding(5.dp)
             )
         }
         Column(
@@ -258,7 +266,9 @@ fun AppPreview(height: Float, CustomViewModel : CustomizationViewModel) {
             Text(
                 text = "Messages",
                 color = NubBlu,
-                fontFamily = getFont(font)
+                fontFamily = getFont(font),
+                style = getFontSize(fontSize),
+                modifier = Modifier.padding(5.dp)
             )
         }
     }
@@ -339,8 +349,6 @@ fun Header() {
     }
 }
 
-
-
 @Composable
 fun IconShapeSelect(CustomViewModel: CustomizationViewModel) {
     Row (
@@ -358,21 +366,21 @@ fun IconShapeSelect(CustomViewModel: CustomizationViewModel) {
         )
         Image(
             painter = painterResource(id = R.drawable.google),
-            contentDescription = "Square",
+            contentDescription = "Rounded",
             modifier = Modifier
                 .clip(IconShapes.small)
                 .clickable { CustomViewModel.changeShape(IconShapes.small, 2) }
         )
         Image(
             painter = painterResource(id = R.drawable.google),
-            contentDescription = "Square",
+            contentDescription = "Squicircle",
             modifier = Modifier
                 .clip(IconShapes.medium)
                 .clickable { CustomViewModel.changeShape(IconShapes.medium, 3) }
         )
         Image(
             painter = painterResource(id = R.drawable.google),
-            contentDescription = "Square",
+            contentDescription = "Circle",
             modifier = Modifier
                 .clip(IconShapes.large)
                 .clickable { CustomViewModel.changeShape(IconShapes.large, 4) }
@@ -381,14 +389,29 @@ fun IconShapeSelect(CustomViewModel: CustomizationViewModel) {
     }
 }
 
+@Composable
+fun FontSliderView(sliderPosition: Float, onValChange: (Float) -> Unit){
+    Slider(
+        modifier = Modifier
+            .semantics { contentDescription = "Localized Description" }
+            .padding(start = 28.dp, end = 28.dp),
+        value = sliderPosition,
+        onValueChange = onValChange,
+        valueRange = 0f..3f,
+        colors = sliderColors(),
+        steps = 2
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Font(CustomViewModel: CustomizationViewModel) {
+fun FontBottomSheet(CustomViewModel: CustomizationViewModel) {
     val font : String by CustomViewModel.font.collectAsState()
     var showSheet by remember { mutableStateOf(false) }
 
+
     if (showSheet) {
-        BottomSheet() {
+        BottomSheet(CustomViewModel) {
             showSheet = false
         }
     }
@@ -424,11 +447,10 @@ fun Font(CustomViewModel: CustomizationViewModel) {
             )
         }
     }
-    Spacer(modifier = Modifier.height(12.dp))
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomSheet(onDismiss: () -> Unit) {
+fun BottomSheet(CustomViewModel: CustomizationViewModel, onDismiss: () -> Unit) {
     val modalBottomSheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(
@@ -438,17 +460,11 @@ fun BottomSheet(onDismiss: () -> Unit) {
         containerColor = NubBlu,
         contentColor = NubYel
     ) {
-        FontsBottomSheet()
+        FontsBottomSheet(CustomViewModel)
     }
 }
 
 
-
-@Preview(showBackground = true)
-@Composable
-fun CustomizePreview() {
-    Customize()
-}
 
 fun getFont(font : String): androidx.compose.ui.text.font.FontFamily {
     when (font){
@@ -456,9 +472,17 @@ fun getFont(font : String): androidx.compose.ui.text.font.FontFamily {
         "JosefinSans" -> return JosefinSans
         "Jura" -> return Jura
         "Lato" -> return Lato
-        "Papyrus" -> return Papyrus
-        "Phudu" -> return Phudu
         "SquadaOne" -> return SquadaOne
     }
     return Poppins
+}
+
+fun getFontSize(fpos : Float): TextStyle {
+    when(fpos){
+        0f -> return Typography.labelSmall
+        1f -> return Typography.labelMedium
+        2f -> return Typography.bodySmall
+        3f -> return Typography.bodyMedium
+    }
+    return Typography.labelMedium
 }

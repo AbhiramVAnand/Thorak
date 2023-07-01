@@ -108,7 +108,7 @@ class PrefernceRepository(context : Context) {
     }
 
     fun getFontSize() : Float{
-        return sharedPreferences.getFloat(FONTSIZE, 14F)
+        return sharedPreferences.getFloat(FONTSIZE, 1F)
     }
 
     fun getClockSize() : Float {

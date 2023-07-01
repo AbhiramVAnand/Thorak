@@ -41,10 +41,10 @@ val Typography = Typography(
         fontSize = 34.sp
     ),
     headlineMedium = TextStyle(
-        fontSize = 20.sp
+        fontSize = 28.sp
     ),
     headlineSmall = TextStyle(
-        fontSize = 28.sp
+        fontSize = 20.sp
     ),
     bodyLarge = TextStyle(
         fontSize = 18.sp
@@ -54,5 +54,11 @@ val Typography = Typography(
     ),
     bodySmall = TextStyle(
         fontSize = 14.sp
+    ),
+    labelMedium = TextStyle(
+        fontSize = 12.sp
+    ),
+    labelSmall = TextStyle(
+        fontSize = 0.sp
     )
 )

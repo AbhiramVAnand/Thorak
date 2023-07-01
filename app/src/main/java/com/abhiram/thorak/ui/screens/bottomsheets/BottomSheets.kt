@@ -1,21 +1,18 @@
 package com.abhiram.thorak.ui.screens.bottomsheets
 
+import CustomizationViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,14 +22,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.abhiram.thorak.ui.screens.tour.getFont
 import com.abhiram.thorak.ui.theme.BottomSheetsShapes
 import com.abhiram.thorak.ui.theme.JosefinSans
 import com.abhiram.thorak.ui.theme.Jura
 import com.abhiram.thorak.ui.theme.Lato
 import com.abhiram.thorak.ui.theme.NubBlu
 import com.abhiram.thorak.ui.theme.NubYel
-import com.abhiram.thorak.ui.theme.Phudu
 import com.abhiram.thorak.ui.theme.Poppins
 import com.abhiram.thorak.ui.theme.SquadaOne
 import com.abhiram.thorak.ui.theme.ThorakShapes
@@ -41,7 +36,7 @@ import com.abhiram.thorak.ui.theme.Typography
 
 @Composable
 @ExperimentalMaterial3Api
-fun FontsBottomSheet(){
+fun FontsBottomSheet(CustomViewModel: CustomizationViewModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth(1F)
@@ -63,7 +58,9 @@ fun FontsBottomSheet(){
             Spacer(modifier = Modifier.height(14.dp))
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                          CustomViewModel.changeFont("Poppins")
+                },
                 modifier = Modifier
                     .fillMaxWidth(1F)
                     .height(42.dp),
@@ -85,7 +82,9 @@ fun FontsBottomSheet(){
             Spacer(modifier = Modifier.height(10.dp))
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    CustomViewModel.changeFont("JosefinSans")
+                },
                 modifier = Modifier
                     .fillMaxWidth(1F)
                     .height(42.dp),
@@ -114,7 +113,9 @@ fun FontsBottomSheet(){
             Spacer(modifier = Modifier.height(10.dp))
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    CustomViewModel.changeFont("Jura")
+                },
                 modifier = Modifier
                     .fillMaxWidth(1F)
                     .height(42.dp),
@@ -139,7 +140,9 @@ fun FontsBottomSheet(){
             Spacer(modifier = Modifier.height(10.dp))
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    CustomViewModel.changeFont("Lato")
+                },
                 modifier = Modifier
                     .fillMaxWidth(1F)
                     .height(42.dp),
@@ -163,7 +166,9 @@ fun FontsBottomSheet(){
             Spacer(modifier = Modifier.height(10.dp))
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    CustomViewModel.changeFont("SquadaOne")
+                },
                 modifier = Modifier
                     .fillMaxWidth(1F)
                     .height(42.dp),
@@ -186,52 +191,15 @@ fun FontsBottomSheet(){
             }
 
             Spacer(modifier = Modifier.height(24.dp))
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(1F),
-                horizontalArrangement = Arrangement.Center
-            ) {
-
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(containerColor = NubBlu, contentColor = NubYel),
-                    shape = ThorakShapes.large
-                ) {
-                    Text(
-                        text = "Cancel",
-                        color = NubYel,
-                        fontFamily = Poppins,
-                        fontWeight = FontWeight.Normal,
-                        style = Typography.bodyLarge
-                    )
-                }
-
-                Spacer(modifier = Modifier.fillMaxWidth(0.3F))
-
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(containerColor = NubBlu, contentColor = NubYel),
-                    shape = ThorakShapes.large
-                ) {
-                    Text(
-                        text = "Apply",
-                        color = NubYel,
-                        fontFamily = Poppins,
-                        fontWeight = FontWeight.Normal,
-                        style = Typography.bodyLarge
-                    )
-                }
-            }
         }
     }
     Spacer(modifier = Modifier.height(24.dp))
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
-@Composable
-fun SheetsPreview(){
-    FontsBottomSheet()
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Preview(showBackground = true)
+//@Composable
+//fun SheetsPreview(){
+//    FontsBottomSheet()
+//}
